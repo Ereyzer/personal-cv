@@ -131,3 +131,4 @@ dist
 
 # setup structure ignor
 structure/
+dev_data/
