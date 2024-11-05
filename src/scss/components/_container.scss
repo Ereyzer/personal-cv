@@ -1,0 +1,11 @@
+@use "../vars" as *;
+
+.container {
+  margin: 0 auto;
+  max-width: $mobile-max-width;
+  @media screen and (max-width: $mobile-max-width + 10px) {
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: calc($mobile-max-width + 10px);
+  }
+}

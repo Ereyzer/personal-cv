@@ -8,7 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
-    "start": "parcel --open",
+    "clear": "rm -rf .parcel-cache",
+    "start": "npm run clear; parcel --open",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "eslint --cache --fix --color",
     "build": "parcel build"

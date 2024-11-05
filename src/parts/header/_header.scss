@@ -1,0 +1,30 @@
+@use "../../scss/vars" as *;
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+.burger {
+  width: 14px;
+  height: 10px;
+  fill: $main-wite-text-color;
+}
+.logo {
+  fill: none;
+  stroke: $main-wite-text-color;
+  width: 33px;
+  height: 33px;
+}
+.logo-container {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.logo-text {
+  @extend .oleo-script-regular;
+  color: $main-wite-text-color;
+  letter-spacing: 0%;
+  line-height: auto;
+  font-size: 24px;
+}

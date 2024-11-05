@@ -1,0 +1,7 @@
+@use "base";
+@use "vars" as *;
+@use "components";
+
+body {
+  background-color: $main-black-bckg;
+}
