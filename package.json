@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "clear": "rm -rf .parcel-cache",
     "start": "npm run clear; parcel --open",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md, scss, html}\"",
     "lint": "eslint --cache --fix --color",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
     "build": "parcel build"
