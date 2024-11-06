@@ -12,6 +12,7 @@
     "start": "npm run clear; parcel --open",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "eslint --cache --fix --color",
+    "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
     "build": "parcel build"
   },
   "husky": {
@@ -22,6 +23,7 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
       "npm run format",
+      "npm run lint:css",
       "npm run lint"
     ]
   },
@@ -48,7 +50,9 @@
     "posthtml": "^0.16.6",
     "posthtml-doctype": "^1.1.1",
     "posthtml-include": "^2.0.1",
-    "prettier": "3.3.3"
+    "prettier": "3.3.3",
+    "stylelint": "^16.10.0",
+    "stylelint-config-standard-scss": "^13.1.0"
   },
   "dependencies": {
     "modern-normalize": "^3.0.1"
