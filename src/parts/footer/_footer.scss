@@ -1,0 +1,32 @@
+@use "../../scss/vars" as *;
+
+.char {
+  margin-bottom: 30px;
+  color: $main-wite-text-color;
+}
+
+.social {
+  &-list {
+    display: flex;
+    justify-content: center;
+    gap: 21px;
+    margin-bottom: 25px;
+  }
+
+  &-icon {
+    fill: $main-wite-text-color;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.copyrite-text {
+  @include inter-font(400);
+
+  font-size: 12px;
+  text-align: center;
+}
+
+footer {
+  padding-bottom: 30px;
+}
