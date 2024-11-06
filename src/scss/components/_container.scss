@@ -2,11 +2,25 @@
 
 .container {
   margin: 0 auto;
-  max-width: $mobile-max-width;
+  max-width: calc($mobile-min-width - 10px);
+  padding-left: 5px;
+  padding-right: 5px;
 
-  @media screen and (max-width: $mobile-max-width + 10px) {
+  @media screen and (min-width: $mobile-min-width) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: $mobile-min-width;
+  }
+
+  @media screen and (min-width: $desctop-min-width) {
     padding-left: 5px;
     padding-right: 5px;
-    max-width: calc($mobile-max-width + 10px);
+    max-width: calc($desctop-max-width - 10px);
+  }
+
+  @media screen and (min-width: $desctop-max-width) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: calc($desctop-max-width - 10px);
   }
 }
