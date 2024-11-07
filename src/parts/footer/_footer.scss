@@ -12,7 +12,11 @@
 
 .char {
   margin-bottom: 30px;
-  color: $main-wite-text-color;
+  color: $main-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $main-black-theme-text-color;
+  }
 }
 
 .social {
@@ -24,9 +28,13 @@
   }
 
   &-icon {
-    fill: $main-wite-text-color;
     width: 32px;
     height: 32px;
+    fill: $secod-light-theme-text-color;
+
+    @media (prefers-color-scheme: dark) {
+      fill: $second-black-theme-text-color;
+    }
   }
 }
 
@@ -35,4 +43,9 @@
 
   font-size: 12px;
   text-align: center;
+  color: $secod-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $second-black-theme-text-color;
+  }
 }

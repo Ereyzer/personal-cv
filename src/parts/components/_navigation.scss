@@ -1,0 +1,23 @@
+@use "../../scss/vars" as *;
+
+.header-nav {
+  @media screen and (width <= calc($tablet-min-width - 1px)) {
+    display: none;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 40px;
+
+    li {
+      @include montserrat-fount(400);
+
+      font-size: 18px;
+      color: $second-title-light-theme-text-color;
+
+      @media (prefers-color-scheme: dark) {
+        color: $second-title-black-theme-text-color;
+      }
+    }
+  }
+}

@@ -1,7 +1,10 @@
 @use "base";
 @use "vars" as *;
-@use "components";
 
 body {
-  background-color: $main-black-bckg;
+  background-color: $main-light-theme-bg-color;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $main-black-theme-bg-color;
+  }
 }
