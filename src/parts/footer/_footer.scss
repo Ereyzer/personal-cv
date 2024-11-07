@@ -1,5 +1,15 @@
 @use "../../scss/vars" as *;
 
+.footer-container {
+  padding-bottom: 30px;
+
+  @media screen and (min-width: $tablet-min-width) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+
 .char {
   margin-bottom: 30px;
   color: $main-wite-text-color;
@@ -25,8 +35,4 @@
 
   font-size: 12px;
   text-align: center;
-}
-
-footer {
-  padding-bottom: 30px;
 }
