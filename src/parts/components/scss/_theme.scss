@@ -1,0 +1,31 @@
+@use "../../../scss/vars" as *;
+
+.theme {
+  &-sun {
+    display: none;
+
+    @media (prefers-color-scheme: dark) {
+      display: initial;
+    }
+  }
+
+  &-moon {
+    @media (prefers-color-scheme: dark) {
+      display: none;
+    }
+  }
+}
+
+.theme-icon {
+  width: 30px;
+  height: 30px;
+  fill: #484e53;
+  stroke: #e1e1e1;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    fill: $link-hover-text-color;
+    stroke: $link-hover-text-color;
+  }
+}
