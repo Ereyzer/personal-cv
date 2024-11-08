@@ -13,7 +13,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md, scss, html}\"",
     "lint": "eslint --cache --fix --color",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
-    "build": "parcel build"
+    "build": "parcel build src/index.html"
   },
   "husky": {
     "hooks": {
