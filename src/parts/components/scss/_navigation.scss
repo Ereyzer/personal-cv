@@ -20,4 +20,11 @@
       }
     }
   }
+
+  a {
+    &:hover,
+    &:focus {
+      color: $link-hover-text-color;
+    }
+  }
 }

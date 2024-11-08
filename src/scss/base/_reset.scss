@@ -23,10 +23,13 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+  line-height: 0;
 }
 
 button {
   padding: 0;
   border: 0;
   background-color: inherit;
+  line-height: 0;
+  font-size: 0;
 }
