@@ -50,3 +50,9 @@
     color: $main-title-black-theme-text-color;
   }
 }
+
+@media screen and (width <= calc($tablet-min-width - 1px)) {
+  .lang-theme-block {
+    display: none;
+  }
+}
