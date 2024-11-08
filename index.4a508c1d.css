@@ -1,0 +1,63 @@
+:root {
+  --main-wite-text-color: #fff;
+  --main-black-bckg: #1a1a1a;
+}
+
+body {
+  background-color: var(--main-black-bckg);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 339px;
+  margin: 0 auto;
+}
+
+.burger {
+  fill: var(--main-wite-text-color);
+  width: 14px;
+  height: 10px;
+}
+
+.logo {
+  fill: none;
+  stroke: var(--main-wite-text-color);
+  width: 33px;
+  height: 33px;
+}
+
+.logo-container {
+  font-size: 4px;
+  display: inline-block;
+}
+
+.logo-text {
+  color: var(--main-wite-text-color);
+  letter-spacing: 0%;
+  font-family: Oleo Script, system-ui;
+  font-style: normal;
+  font-weight: 400;
+  line-height: auto;
+  font-size: 24px;
+  display: inline-block;
+}
+/*# sourceMappingURL=index.4a508c1d.css.map */

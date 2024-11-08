@@ -1,0 +1,294 @@
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  line-height: 0;
+  text-decoration: none;
+}
+
+button {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+.logo-text {
+  font-family: Oleo Script, system-ui;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.container {
+  max-width: 330px;
+  margin: 0 auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+@media screen and (width >= 340px) {
+  .container {
+    max-width: 340px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (width >= 768px) {
+  .container {
+    max-width: 738px;
+  }
+}
+
+@media screen and (width >= 992px) {
+  .container {
+    max-width: 1270px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+@media screen and (width >= 1280px) {
+  .container {
+    max-width: 1270px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+body {
+  background-color: #e0e8f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+  }
+}
+
+@media screen and (width <= 767px) {
+  .header-nav {
+    display: none;
+  }
+}
+
+.header-nav nav ul {
+  gap: 40px;
+  display: flex;
+}
+
+.header-nav nav ul li {
+  font-optical-sizing: auto;
+  color: #050505;
+  font-family: Montserrat, serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .header-nav nav ul li {
+    color: #c1c1c1;
+  }
+}
+
+.header-nav a:hover, .header-nav a:focus {
+  color: #4fc3f7;
+}
+
+.theme-sun {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-sun {
+    display: initial;
+  }
+}
+
+.theme-moon {
+  display: initial;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-moon {
+    display: none;
+  }
+}
+
+.theme-button {
+  fill: #484e53;
+  stroke: #e1e1e1;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.theme-button:hover, .theme-button:focus {
+  cursor: pointer;
+  fill: #4fc3f7;
+  stroke: #4fc3f7;
+}
+
+.theme-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.lang-switch {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.lang-switch .lang-none {
+  display: none;
+}
+
+.header-container {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  display: flex;
+}
+
+.burger {
+  fill: #484e53;
+  width: 14px;
+  height: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .burger {
+    fill: #e1e1e1;
+  }
+}
+
+@media screen and (width >= 768px) {
+  .burger {
+    display: none;
+  }
+}
+
+.logo {
+  fill: none;
+  stroke: #000;
+  width: 33px;
+  height: 33px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    stroke: #fff;
+  }
+}
+
+.logo-container {
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+
+.logo-text {
+  color: #000;
+  letter-spacing: 0%;
+  line-height: auto;
+  font-size: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo-text {
+    color: #fff;
+  }
+}
+
+@media screen and (width <= 767px) {
+  .lang-theme-block {
+    display: none;
+  }
+}
+
+.footer-container {
+  padding-bottom: 30px;
+}
+
+@media screen and (width >= 768px) {
+  .footer-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    display: flex;
+  }
+}
+
+.char {
+  color: #484e53;
+  margin-bottom: 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .char {
+    color: #e1e1e1;
+  }
+}
+
+.social-list {
+  justify-content: center;
+  gap: 21px;
+  margin-bottom: 25px;
+  display: flex;
+}
+
+.social-list a {
+  fill: #282938;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .social-list a {
+    fill: #a9a9a9;
+  }
+}
+
+.social-list a:hover, .social-list a:focus {
+  fill: #4fc3f7;
+}
+
+.social-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.copyrite-text {
+  font-optical-sizing: auto;
+  text-align: center;
+  color: #282938;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+@media (prefers-color-scheme: dark) {
+  .copyrite-text {
+    color: #a9a9a9;
+  }
+}
+/*# sourceMappingURL=index.ce1d6491.css.map */

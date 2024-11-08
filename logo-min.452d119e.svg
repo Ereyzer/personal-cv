@@ -1,0 +1,22 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<style>:root {
+  --main_color: #041029;
+  --line_color: #fff;
+}
+
+.border, .network {
+  stroke: var(--line_color);
+  stroke-width: 3px;
+  fill: var(--main_color);
+}
+</style>
+<rect x="2" y="2" class="border" style="width: 194px; height: 194px"></rect>
+<rect x="8" y="8" class="border" style="width: 182px; height: 182px"></rect>
+<circle cx="64" cy="64" r="20" class="network"></circle>
+<ellipse cx="64" cy="64" rx="6" ry="19" class="network"></ellipse>
+<path class="network" d="M46 54h35M43 64h40M46 74h35"></path>
+<path style="fill: var(--line_color); stroke-width: 2px; stroke: var(--main_color)" d="m64 64 25 7-17 16z"></path>
+<path stroke-width="6" style="stroke: var(--line_color)" d="m79 78 6 6"></path>
+<path class="border" d="M150 46 46 150M122 111h12M128 111v34M122 145h12"></path>
+Sorry, your browser does not support inline SVG.
+</svg>
