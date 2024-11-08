@@ -5,6 +5,7 @@
   "description": "My personal CV project",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "main": "index.js",
+  "homepage": "https://ereyzer.github.io/personal-cv/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
@@ -13,7 +14,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md, scss, html}\"",
     "lint": "eslint --cache --fix --color",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html --public-url /personal-cv/"
   },
   "husky": {
     "hooks": {
@@ -37,7 +38,6 @@
   "bugs": {
     "url": "https://github.com/Ereyzer/personal-cv/issues"
   },
-  "homepage": "https://github.com/Ereyzer/personal-cv#readme",
   "devDependencies": {
     "@html-eslint/eslint-plugin": "^0.27.0",
     "@html-eslint/parser": "^0.27.0",
