@@ -1,0 +1,58 @@
+@use "../../scss/vars" as *;
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.burger {
+  width: 14px;
+  height: 10px;
+  fill: $main-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    fill: $main-black-theme-text-color;
+  }
+
+  @media screen and (min-width: $tablet-min-width) {
+    display: none;
+  }
+}
+
+.logo {
+  width: 33px;
+  height: 33px;
+  fill: none;
+  stroke: $main-title-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    stroke: $main-title-black-theme-text-color;
+  }
+}
+
+.logo-container {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.logo-text {
+  @extend %oleo-script-regular;
+
+  color: $main-title-light-theme-text-color;
+  letter-spacing: 0%;
+  line-height: auto;
+  font-size: 24px;
+
+  @media (prefers-color-scheme: dark) {
+    color: $main-title-black-theme-text-color;
+  }
+}
+
+@media screen and (width <= calc($tablet-min-width - 1px)) {
+  .lang-theme-block {
+    display: none;
+  }
+}

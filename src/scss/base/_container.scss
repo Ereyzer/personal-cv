@@ -1,0 +1,30 @@
+@use "../vars" as *;
+
+.container {
+  margin: 0 auto;
+  max-width: calc($mobile-min-width - 10px);
+  padding-left: 5px;
+  padding-right: 5px;
+
+  @media screen and (min-width: $mobile-min-width) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: $mobile-min-width;
+  }
+
+  @media screen and (min-width: $tablet-min-width) {
+    max-width: calc($tablet-min-width - 30px);
+  }
+
+  @media screen and (min-width: $desctop-min-width) {
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: calc($desctop-large-width - 10px);
+  }
+
+  @media screen and (min-width: $desctop-large-width) {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: calc($desctop-large-width - 10px);
+  }
+}

@@ -1,0 +1,10 @@
+@use "base";
+@use "vars" as *;
+
+body {
+  background-color: $main-light-theme-bg-color;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $main-black-theme-bg-color;
+  }
+}
