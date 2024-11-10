@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
+  margin-bottom: 35px;
 }
 
 .burger {
@@ -25,7 +26,7 @@
   width: 33px;
   height: 33px;
   fill: none;
-  stroke: $main-title-light-theme-text-color;
+  stroke: $main-black-light-theme-text-color;
 
   @media (prefers-color-scheme: dark) {
     stroke: $main-title-black-theme-text-color;
@@ -41,7 +42,7 @@
 .logo-text {
   @extend %oleo-script-regular;
 
-  color: $main-title-light-theme-text-color;
+  color: $main-black-light-theme-text-color;
   letter-spacing: 0%;
   line-height: auto;
   font-size: 24px;
