@@ -64,6 +64,7 @@ h1 {
   @extend %subtitle;
   @include poppins-font(600);
 
+  text-transform: capitalize;
   background-image: $subtitle-hero-gradient-light-theme;
   font-size: 18px;
   letter-spacing: 0;
@@ -106,6 +107,7 @@ h1 {
   height: 41px;
   border: 1px solid $link-hover-text-color;
   border-radius: 75px;
+  text-transform: capitalize;
   color: $main-light-theme-text-color;
   margin: 0 auto;
 
