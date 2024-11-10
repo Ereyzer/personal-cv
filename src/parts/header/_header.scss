@@ -26,7 +26,7 @@
   width: 33px;
   height: 33px;
   fill: none;
-  stroke: $main-black-light-theme-text-color;
+  stroke: $main-light-theme-text-black-color;
 
   @media (prefers-color-scheme: dark) {
     stroke: $main-title-black-theme-text-color;
@@ -42,7 +42,7 @@
 .logo-text {
   @extend %oleo-script-regular;
 
-  color: $main-black-light-theme-text-color;
+  color: $main-light-theme-text-black-color;
   letter-spacing: 0%;
   line-height: auto;
   font-size: 24px;

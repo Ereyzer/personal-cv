@@ -1,7 +1,44 @@
+@use "colors" as *;
+@use "widths" as *;
+@use "fonts" as *;
 %subtitle {
   color: transparent;
   background-clip: text;
   margin: 0 auto;
   width: fit-content;
   line-height: 1;
+}
+
+%section-button {
+  display: block;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: 1px solid $main-light-theme-text-color;
+  border-radius: 75px;
+  text-transform: capitalize;
+  color: $main-light-theme-text-color;
+  margin: 0 auto;
+  line-height: 1px;
+
+  @include montserrat-fount(500);
+
+  letter-spacing: 0;
+  font-size: 13px;
+
+  @media screen and (min-width: $tablet-min-width) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 15px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: $link-hover-text-color;
+    color: $main-black-theme-text-color;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    color: $link-hover-text-color;
+  }
 }
