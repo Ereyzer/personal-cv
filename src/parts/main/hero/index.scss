@@ -64,6 +64,7 @@ h1 {
   @extend %subtitle;
   @include poppins-font(600);
 
+  text-transform: capitalize;
   background-image: $subtitle-hero-gradient-light-theme;
   font-size: 18px;
   letter-spacing: 0;
@@ -87,7 +88,6 @@ h1 {
   line-height: 30px;
   color: $main-light-theme-text-color;
   text-align: center;
-  max-width: 790px;
   margin: 0 auto;
   margin-bottom: 40px;
 
@@ -101,32 +101,8 @@ h1 {
 }
 
 .hero-button {
-  display: block;
-  width: 164px;
-  height: 41px;
-  border: 1px solid $link-hover-text-color;
-  border-radius: 75px;
-  color: $main-light-theme-text-color;
-  margin: 0 auto;
+  @extend %section-button;
 
-  @include montserrat-fount(500);
-
-  letter-spacing: 0;
-  font-size: 13px;
-
-  @media screen and (min-width: $tablet-min-width) {
-    width: 185px;
-    height: 55px;
-    font-size: 15px;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    color: $main-black-theme-text-color;
-  }
-
-  &:hover,
-  &:focus {
-    cursor: pointer;
-    color: $link-hover-text-color;
-  }
+  padding-left: 40px;
+  padding-right: 40px;
 }
