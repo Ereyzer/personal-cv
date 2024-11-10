@@ -3,14 +3,26 @@ $main-black-theme-text-color: #e1e1e1;
 $second-black-theme-text-color: #a9a9a9;
 $main-title-black-theme-text-color: #fff;
 $second-title-black-theme-text-color: #c1c1c1;
+$main-black-theme-bg-color: #1a1a1a;
 
 // light theme colors
-$main-black-theme-bg-color: #1a1a1a;
+$main-black-light-theme-text-color: #000;
+$second-black-light-theme-text-color: #050505;
 $main-light-theme-text-color: #484e53;
 $secod-light-theme-text-color: #282938;
-$main-title-light-theme-text-color: #000;
-$second-title-light-theme-text-color: #050505;
+$main-title-light-theme-text-color: #484e53;
+$second-title-light-theme-text-color: #2b2b2b;
 $main-light-theme-bg-color: #e0e8f6;
 
 // link hover
 $link-hover-text-color: #4fc3f7;
+
+// text gradients to subtitle
+$subtitle-hero-gradient-light-theme: linear-gradient(
+  to right,
+  #4fc3f7,
+  #484e53
+);
+$subtitle-gradient-light-theme: linear-gradient(to right, #4fc3f7, #050505);
+$subtitle-hero-gradient-black-theme: linear-gradient(to right, #4fc3f7, #fff);
+$subtitle-gradient-black-theme: linear-gradient(to right, #4fc3f7, #f5f5f5);

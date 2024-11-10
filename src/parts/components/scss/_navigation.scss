@@ -13,7 +13,7 @@
       @include montserrat-fount(400);
 
       font-size: 18px;
-      color: $second-title-light-theme-text-color;
+      color: $second-black-light-theme-text-color;
 
       @media (prefers-color-scheme: dark) {
         color: $second-title-black-theme-text-color;
