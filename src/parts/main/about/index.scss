@@ -13,15 +13,6 @@
 
 .about-subtitle {
   @extend %section-subtitle;
-  @include inter-font(600);
-
-  font-size: 14px;
-  background-image: $subtitle-gradient-light-theme;
-  margin-bottom: 40px;
-
-  @media (prefers-color-scheme: dark) {
-    background-image: $subtitle-gradient-black-theme;
-  }
 }
 
 .about-text {
