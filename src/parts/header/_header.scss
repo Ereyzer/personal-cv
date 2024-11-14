@@ -1,5 +1,12 @@
 @use "../../scss/vars" as *;
 
+header {
+  // TODO: only when scroll fixed header and smolest heit maybe display none some elements
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
