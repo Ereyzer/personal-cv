@@ -2,14 +2,25 @@
 @use "../../../../scss/vars" as *;
 
 .offer-container {
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-  align-items: center;
   max-width: 936px;
   margin: 0 auto;
   padding-top: 50px;
   padding-bottom: 50px;
+}
+
+.offer-title {
+  @extend %title;
+}
+
+.offer-subtitle {
+  @extend %section-subtitle;
+}
+
+.offer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  align-items: center;
 
   @media screen and (min-width: $tablet-min-width) {
     flex-flow: row wrap;
