@@ -1,0 +1,14 @@
+@use "../../../scss/vars" as *;
+
+.portfolio-container {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.portfolio-title {
+  @extend %title;
+}
+
+.portfolio-subtitle {
+  @extend %section-subtitle;
+}

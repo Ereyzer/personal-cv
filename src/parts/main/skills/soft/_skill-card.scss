@@ -1,0 +1,78 @@
+@use "../../../../scss/vars" as *;
+
+.skill-card {
+  max-width: 289px;
+  padding: 29px 26px;
+  background-color: #edf5ff;
+  border-radius: 10px;
+  border: 1px solid #fff;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: linear-gradient(
+      120deg,
+      rgb(28 28 28 / 50%),
+      rgb(5 5 5 / 100%)
+    );
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 30%);
+  }
+}
+%skill-card-item {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.skill-icon {
+  @extend %skill-card-item;
+
+  margin-bottom: 19px;
+  width: 44px;
+  height: 44px;
+  background-color: $services-light-theme-icon-bg-color;
+  border-radius: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $main-title-black-theme-text-color;
+  }
+}
+
+.skill-title {
+  @extend %skill-card-item;
+  @include inter-font(600);
+
+  font-size: 15px;
+  line-height: 120%;
+  letter-spacing: 0;
+  margin-bottom: 18px;
+  color: $main-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $main-title-black-theme-text-color;
+  }
+}
+
+.skill-text {
+  @extend %skill-card-item;
+  @include inter-font(400);
+
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: $card-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $main-black-theme-text-color;
+  }
+}

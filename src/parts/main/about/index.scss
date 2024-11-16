@@ -8,37 +8,11 @@
 }
 
 .about-title {
-  @include inter-font(800);
-
-  font-size: 24px;
-  letter-spacing: -0.72px;
-
-  // line-height: 1px;
-  text-align: center;
-  color: $second-title-light-theme-text-color;
-  text-transform: capitalize;
-
-  @media (prefers-color-scheme: dark) {
-    color: $main-title-black-theme-text-color;
-  }
-
-  @media screen and (min-width: $tablet-min-width) {
-    font-size: 45px;
-    letter-spacing: -1.35px;
-  }
+  @extend %title;
 }
 
 .about-subtitle {
-  @extend %subtitle;
-  @include inter-font(600);
-
-  font-size: 14px;
-  background-image: $subtitle-gradient-light-theme;
-  margin-bottom: 40px;
-
-  @media (prefers-color-scheme: dark) {
-    background-image: $subtitle-gradient-black-theme;
-  }
+  @extend %section-subtitle;
 }
 
 .about-text {
@@ -65,4 +39,6 @@
 
   padding-left: 30px;
   padding-right: 30px;
+  text-align: center;
+  width: fit-content;
 }

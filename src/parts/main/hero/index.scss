@@ -21,6 +21,7 @@ h1 {
 }
 
 .hero-container {
+  margin-top: 90px;
   background-image: url("./images/png/bg-hero-mobile-light.png");
   background-position: top;
   background-repeat: no-repeat;
@@ -77,6 +78,15 @@ h1 {
   @media screen and (min-width: $tablet-min-width) {
     font-size: 26px;
     margin-bottom: 15px;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    &::after {
+      color: initial;
+      content: "🧙‍♂️";
+    }
   }
 }
 

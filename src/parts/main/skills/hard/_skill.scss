@@ -1,0 +1,35 @@
+@use "../../../../scss/vars" as *;
+
+.hard-skill-card {
+  width: 240px;
+
+  @include inter-font(600);
+
+  font-size: 15px;
+  line-height: 120%;
+  letter-spacing: 0;
+  color: $main-light-theme-text-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $main-black-theme-text-color;
+  }
+
+  figure {
+    width: 100%;
+  }
+
+  img {
+    margin-bottom: 30px;
+    max-width: 100px;
+    max-height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  figcaption {
+    width: 100%;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
