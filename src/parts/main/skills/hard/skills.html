@@ -1,4 +1,4 @@
-<section>
+<section id="skills">
   <div class="container skills-container">
     <h2 class="skills-title">Hard Skills</h2>
     <h3 class="skills-subtitle">What I can use</h3>
@@ -16,6 +16,18 @@
                 <button type="button">Langueges</button>
             </li>
         </ul> -->
-    <ul class="skills-list"></ul>
+    <ul class="skills-list">
+      <li>
+        <include src="./parts/main/skills/hard/skill.html"></include>
+      </li>
+    </ul>
+    <button type="button" class="more-button">
+      <span> More skills </span>
+      <svg>
+        <use href="./images/svg/sprite.svg#arrow-down"></use>
+        <!-- TODO: apdate with js -->
+        <!-- <use href="./images/svg/sprite.svg#arrow-up"></use> -->
+      </svg>
+    </button>
   </div>
 </section>
