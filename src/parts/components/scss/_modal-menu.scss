@@ -1,0 +1,41 @@
+@use "../../../scss/vars" as *;
+
+.modal-menu-overlay {
+  position: absolute;
+  top: 63px;
+  right: 0;
+  transform: translateX(100vw);
+  transition: transform 500ms ease-in-out;
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  @media screen and (min-width: $tablet-min-width) {
+    display: none;
+  }
+}
+
+.modal-menu {
+  position: relative;
+  top: 0;
+  right: 0;
+  padding-top: 10px;
+  background-color: $main-light-theme-bg-color;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $main-black-theme-bg-color;
+  }
+
+  // TODO: ADD STYLES
+}
+
+.modal-settings {
+  margin-top: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}

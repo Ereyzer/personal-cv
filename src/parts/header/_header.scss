@@ -14,11 +14,15 @@ header {
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
+
+  @media screen and (max-width: $tablet-min-width) {
+    position: relative;
+  }
 }
 
 .burger {
-  width: 14px;
-  height: 10px;
+  width: 33px;
+  height: 33px;
   fill: $main-light-theme-text-color;
 
   @media (prefers-color-scheme: dark) {
@@ -61,6 +65,31 @@ header {
 
 @media screen and (width <= calc($tablet-min-width - 1px)) {
   .lang-theme-block {
+    display: none;
+  }
+}
+
+// .header-cross {
+
+//   display: inherit;
+// }
+.header-cross {
+  display: none;
+}
+
+.header-burger {
+  display: initial;
+}
+
+// .modal-menu-overlay.is-open .header-cross {
+//     display: inherit;
+//   }
+.modal-menu-overlay.is-open ~ svg.burger {
+  .header-cross {
+    display: initial;
+  }
+
+  .header-burger {
     display: none;
   }
 }
