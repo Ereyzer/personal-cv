@@ -54,10 +54,18 @@ h1 {
   overflow: hidden;
 
   img {
-    display: block;
+    text-align: center;
+    line-height: 200px;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    background-color: $card-light-theme-text-color;
+    color: $main-black-theme-text-color;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: $second-black-theme-text-color;
+      color: $main-light-theme-text-color;
+    }
   }
 }
 
