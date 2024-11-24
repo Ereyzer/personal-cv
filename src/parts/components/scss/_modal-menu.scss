@@ -5,7 +5,7 @@
   top: 63px;
   right: 0;
   transform: translateX(100vw);
-  transition: transform 500ms ease-in-out;
+  transition: transform 800ms linear;
 
   &.is-open {
     transform: translateX(0);
