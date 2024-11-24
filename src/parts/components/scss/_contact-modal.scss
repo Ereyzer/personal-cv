@@ -10,12 +10,14 @@
   visibility: hidden;
   transform: scale(0);
   pointer-events: none;
+  cursor: none;
   transition: transform 500ms ease-in-out;
 }
 
 .modal-overlay.is-open {
   visibility: visible;
   transform: scale(1);
+  cursor: pointer;
   pointer-events: auto;
 }
 
@@ -147,6 +149,7 @@
   right: 20px;
   width: 40px;
   height: 40px;
+  cursor: pointer;
 
   svg {
     width: 100%;
