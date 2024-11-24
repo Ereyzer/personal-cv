@@ -223,7 +223,7 @@ function getHostname() {
 function getPort() {
     return HMR_PORT || location.port;
 }
- 
+// eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
@@ -584,9 +584,95 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"8lqZg":[function(require,module,exports) {
-// import "./styles.css";
-// import * as classes from './styles.scss';
-// console.log("Hello, world");
+// TODO: js
+var _modals = require("./parts/components/js/modals");
+
+},{"./parts/components/js/modals":"5ML0P"}],"5ML0P":[function(require,module,exports) {
+var _cangerClass = require("../../../js/canger_class");
+const menu = new (0, _cangerClass.Changer)({
+    button: "modal-menu-button",
+    changeNode: "modal-menu-overlay",
+    classForChange: "is-open"
+});
+menu.addLisener("click");
+const contact = new (0, _cangerClass.Changer)({
+    button: "modal-contact-button",
+    changeNode: "modal-contact-overlay",
+    classForChange: "is-open"
+});
+contact.closeOnOverlay = function() {
+    this.changeNode[0].addEventListener("click", (e)=>{
+        if (e.currentTarget === e.target) this.addClass();
+    });
+};
+contact.addLisener("click");
+contact.closeOnOverlay();
+
+},{"../../../js/canger_class":"lviQl"}],"lviQl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Changer", ()=>Changer);
+class Changer {
+    #button;
+    #changeNode;
+    #classForChange;
+    #addClass = ()=>{
+        for (const element of this.#changeNode)element.classList.toggle(this.#classForChange);
+    };
+    constructor({ button, changeNode, classForChange }){
+        this.#button = document.querySelectorAll(`[${button}]`);
+        this.#changeNode = document.querySelectorAll(`[${changeNode}]`);
+        this.#classForChange = classForChange;
+    }
+    addLisener(event) {
+        for (const element of this.#button)element.addEventListener(event, this.#addClass);
+    }
+    removeLisener(event) {
+        for (const element of this.#button)element.removeEventListener(event, this.#addClass);
+    }
+    get changeNode() {
+        return this.#changeNode;
+    }
+    get button() {
+        return this.#button;
+    }
+    get classForChange() {
+        return this.#classForChange;
+    }
+    get addClass() {
+        return this.#addClass;
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["farZc","8lqZg"], "8lqZg", "parcelRequiref85d")
 

@@ -336,6 +336,7 @@ body {
 .modal-overlay {
   visibility: hidden;
   pointer-events: none;
+  cursor: none;
   background-color: #000000b3;
   width: 100vw;
   height: 100vh;
@@ -348,6 +349,7 @@ body {
 
 .modal-overlay.is-open {
   visibility: visible;
+  cursor: pointer;
   pointer-events: auto;
   transform: scale(1);
 }
@@ -468,6 +470,7 @@ body {
 }
 
 .contact-modal-cross {
+  cursor: pointer;
   width: 40px;
   height: 40px;
   position: absolute;
