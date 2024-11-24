@@ -1,8 +1,13 @@
 @use "base";
 @use "vars" as *;
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $main-light-theme-bg-color;
+  letter-spacing: 0;
 
   @media (prefers-color-scheme: dark) {
     background-color: $main-black-theme-bg-color;

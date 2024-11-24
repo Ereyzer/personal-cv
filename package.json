@@ -6,16 +6,16 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "homepage": "https://ereyzer.github.io/personal-cv/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install",
     "clear": "rm -rf .parcel-cache",
     "start": "npm run clear; parcel --open",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md, scss, html}\"",
-    "lint": "eslint --cache --fix --color",
+    "lint": "eslint --cache --fix --color --ignore-pattern 'dist/'",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
     "build": "parcel build src/index.html",
     "predeploy": "npm run build --  --public-url /personal-cv/",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "lintstandard": "semistandard --fix | snazzy"
   },
   "husky": {
     "hooks": {
@@ -25,8 +25,14 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
       "npm run format",
+      "git add"
+    ],
+    "*.{css,scss}": [
       "npm run lint:css",
-      "npm run lint",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lintstandard",
       "git add"
     ]
   },
@@ -43,9 +49,13 @@
     "@html-eslint/eslint-plugin": "^0.27.0",
     "@html-eslint/parser": "^0.27.0",
     "@parcel/transformer-sass": "^2.12.0",
-    "eslint": "^9.14.0",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-promise": "^6.6.0",
     "gh-pages": "^6.2.0",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.10",
@@ -54,10 +64,13 @@
     "posthtml-doctype": "^1.1.1",
     "posthtml-include": "^2.0.1",
     "prettier": "3.3.3",
+    "semistandard": "^17.0.0",
+    "standard": "^17.1.2",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0"
   },
   "dependencies": {
-    "modern-normalize": "^3.0.1"
+    "modern-normalize": "^3.0.1",
+    "snazzy": "^9.0.0"
   }
 }

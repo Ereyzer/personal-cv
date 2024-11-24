@@ -24,6 +24,10 @@
     fill: #484e53;
     stroke: #e1e1e1;
 
+    @extend %hover-animation;
+
+    transition-property: fill, stroke;
+
     &:hover,
     &:focus {
       cursor: pointer;

@@ -22,7 +22,43 @@
   }
 
   a {
+    @extend %hover-animation;
+
     &:hover,
+    &:focus {
+      color: $link-hover-text-color;
+    }
+  }
+}
+
+.modal-menu-overlay {
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 25px;
+
+    li {
+      @include montserrat-fount(400);
+
+      font-size: 18px;
+      color: $second-light-theme-text-black-color;
+      padding-bottom: 5px;
+      padding-right: 10px;
+      padding-left: 10px;
+      border-bottom: 1px solid $main-light-theme-text-color;
+      width: 100%;
+      text-align: end;
+
+      @media (prefers-color-scheme: dark) {
+        color: $second-title-black-theme-text-color;
+      }
+    }
+  }
+
+  a {
+    @extend %hover-animation;
+
     &:focus {
       color: $link-hover-text-color;
     }

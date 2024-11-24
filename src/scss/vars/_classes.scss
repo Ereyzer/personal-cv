@@ -54,7 +54,6 @@
 
   @include montserrat-fount(500);
 
-  letter-spacing: 0;
   font-size: 13px;
 
   @media screen and (min-width: $tablet-min-width) {
@@ -72,5 +71,37 @@
   &:focus {
     cursor: pointer;
     color: $link-hover-text-color;
+  }
+}
+
+%hover-animation {
+  transition: color 500ms linear 50ms;
+}
+
+%inputs {
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $main-light-theme-text-color;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: inherit;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: $input-dark-theme-border-color;
+  }
+
+  @media screen and (min-width: $tablet-min-width) {
+    min-width: 500px;
+    padding: 20px 30px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: $link-hover-text-color;
   }
 }

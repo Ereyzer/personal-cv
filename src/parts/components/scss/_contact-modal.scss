@@ -1,0 +1,170 @@
+@use "../../../scss/vars" as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000, $alpha: 70%);
+  visibility: hidden;
+  transform: scale(0);
+  pointer-events: none;
+  transition: transform 500ms ease-in-out;
+}
+
+.modal-overlay.is-open {
+  visibility: visible;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background-color: $main-light-theme-bg-color;
+  width: 100%;
+  overflow: scroll;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $main-black-theme-bg-color;
+  }
+
+  @media screen and (min-width: $tablet-min-width) {
+    max-width: $tablet-min-width;
+    max-height: 80%;
+  }
+
+  @media screen and (min-width: $desctop-min-width) {
+    max-width: $desctop-min-width;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.modal-contact-title {
+  @extend %title;
+}
+
+.modal-contact-subtitle {
+  @extend %section-subtitle;
+}
+
+.contact {
+  &-name,
+  &-email {
+    @extend %inputs;
+    @include inter-font(400);
+
+    font-size: 14px;
+    line-height: 150%;
+
+    &::placeholder {
+      color: $input-placeholder-color;
+    }
+
+    &:hover::placeholder,
+    &:focus::placeholder {
+      color: $link-hover-text-color;
+    }
+
+    @media screen and (min-width: $tablet-min-width) {
+      font-size: 20px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      color: $main-black-theme-text-color;
+    }
+  }
+
+  &-message {
+    @extend %inputs;
+
+    @media (prefers-color-scheme: dark) {
+      color: $main-black-theme-text-color;
+    }
+  }
+
+  &-label {
+    align-self: baseline;
+
+    @include inter-font(700);
+
+    font-size: 16px;
+    line-height: 120%;
+    color: $second-light-theme-text-black-color;
+
+    @media (prefers-color-scheme: dark) {
+      color: $main-title-black-theme-text-color;
+    }
+
+    @media screen and (min-width: $tablet-min-width) {
+      font-size: 18px;
+    }
+
+    // &:focus-within {
+    //   color: $link-hover-text-color;
+    // }
+  }
+
+  &-button {
+    // @extend %section-button;
+    @extend %raleway-bold-font;
+
+    border-radius: 10px;
+    width: 100%;
+    background-color: $main-light-theme-text-color;
+    color: $main-title-black-theme-text-color;
+    font-size: 16px;
+    line-height: 150%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: $main-title-black-theme-text-color;
+      color: $main-light-theme-text-black-color;
+    }
+
+    @media screen and (min-width: $tablet-min-width) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 19px;
+    }
+  }
+}
+
+.contact-modal-cross {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $second-light-theme-text-black-color;
+
+    @media (prefers-color-scheme: dark) {
+      fill: $second-black-theme-text-color;
+    }
+
+    &:hover,
+    &:focus {
+      fill: $link-hover-text-color;
+    }
+  }
+}
+
+// ???????
+// .contact-name:hover .contact-label {
+//     color: $link-hover-text-color;
+//   }
