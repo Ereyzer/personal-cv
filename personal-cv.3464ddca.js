@@ -223,7 +223,7 @@ function getHostname() {
 function getPort() {
     return HMR_PORT || location.port;
 }
-// eslint-disable-next-line no-redeclare
+ 
 var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
     var hostname = getHostname();
