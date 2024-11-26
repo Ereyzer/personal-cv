@@ -10,14 +10,14 @@ h1 {
   text-align: center;
   line-height: 1;
 
-  @media (prefers-color-scheme: dark) {
-    color: $main-title-black-theme-text-color;
-  }
-
   @media screen and (min-width: $tablet-min-width) {
     font-size: 63px;
     letter-spacing: -4px;
   }
+}
+
+body[data-theme="dark"] h1 {
+  color: $main-title-black-theme-text-color;
 }
 
 .hero-container {
@@ -30,16 +30,16 @@ h1 {
   padding-top: 66px;
   padding-bottom: 66px;
 
-  @media (prefers-color-scheme: dark) {
-    background-image: url("./images/png/bg-hero-mobile-dark.png");
-  }
-
   @media screen and (min-width: $tablet-min-width) {
     background-image: url("./images/png/bg-hero-descktop-light.png");
+  }
+}
 
-    @media (prefers-color-scheme: dark) {
-      background-image: url("./images/png/bg-hero-descktop-dark.png");
-    }
+body[data-theme="dark"] .hero-container {
+  background-image: url("./images/png/bg-hero-mobile-dark.png");
+
+  @media screen and (min-width: $tablet-min-width) {
+    background-image: url("./images/png/bg-hero-descktop-dark.png");
   }
 }
 
@@ -61,12 +61,12 @@ h1 {
     object-fit: cover;
     background-color: $card-light-theme-text-color;
     color: $main-black-theme-text-color;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: $second-black-theme-text-color;
-      color: $main-light-theme-text-color;
-    }
   }
+}
+
+body[data-theme="dark"] .hero-img img {
+  background-color: $second-black-theme-text-color;
+  color: $main-light-theme-text-color;
 }
 
 .hero-subtitle {
@@ -77,10 +77,6 @@ h1 {
   background-image: $subtitle-hero-gradient-light-theme;
   font-size: 18px;
   margin-bottom: 45px;
-
-  @media (prefers-color-scheme: dark) {
-    background-image: $subtitle-hero-gradient-black-theme;
-  }
 
   @media screen and (min-width: $tablet-min-width) {
     font-size: 26px;
@@ -97,6 +93,10 @@ h1 {
   }
 }
 
+body[data-theme="dark"] .hero-subtitle {
+  background-image: $subtitle-hero-gradient-black-theme;
+}
+
 .hero-text {
   @include poppins-font(500);
 
@@ -111,10 +111,10 @@ h1 {
   @media screen and (min-width: $tablet-min-width) {
     font-size: 19px;
   }
+}
 
-  @media (prefers-color-scheme: dark) {
-    color: $main-black-theme-text-color;
-  }
+body[data-theme="dark"] .hero-text {
+  color: $main-black-theme-text-color;
 }
 
 .hero-button {
@@ -122,4 +122,14 @@ h1 {
 
   padding-left: 40px;
   padding-right: 40px;
+}
+
+body[data-theme="dark"] .hero-button {
+  border-color: $link-hover-text-color;
+  color: $main-black-theme-text-color;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-text-color;
+  }
 }

@@ -25,10 +25,6 @@ header {
   cursor: pointer;
   transition: transform 1000ms linear;
 
-  @media (prefers-color-scheme: dark) {
-    fill: $main-black-theme-text-color;
-  }
-
   @media screen and (min-width: $tablet-min-width) {
     display: none;
   }
@@ -39,15 +35,19 @@ header {
   }
 }
 
+body[data-theme="dark"] .burger {
+  fill: $main-black-theme-text-color;
+}
+
 .logo {
   width: 33px;
   height: 33px;
   fill: none;
   stroke: $main-light-theme-text-black-color;
+}
 
-  @media (prefers-color-scheme: dark) {
-    stroke: $main-title-black-theme-text-color;
-  }
+body[data-theme="dark"] .logo {
+  stroke: $main-title-black-theme-text-color;
 }
 
 .logo-container {
@@ -62,10 +62,10 @@ header {
   color: $main-light-theme-text-black-color;
   line-height: auto;
   font-size: 24px;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color: $main-title-black-theme-text-color;
-  }
+body[data-theme="dark"] .logo-text {
+  color: $main-title-black-theme-text-color;
 }
 
 @media screen and (width <= calc($tablet-min-width - 1px)) {

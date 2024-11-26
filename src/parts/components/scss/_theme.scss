@@ -3,18 +3,10 @@
 .theme {
   &-sun {
     display: none;
-
-    @media (prefers-color-scheme: dark) {
-      display: initial;
-    }
   }
 
   &-moon {
     display: initial;
-
-    @media (prefers-color-scheme: dark) {
-      display: none;
-    }
   }
 
   &-button {
@@ -33,6 +25,18 @@
       cursor: pointer;
       fill: $link-hover-text-color;
       stroke: $link-hover-text-color;
+    }
+  }
+}
+
+body[data-theme="dark"] {
+  .theme {
+    &-sun {
+      display: initial;
+    }
+
+    &-moon {
+      display: none;
     }
   }
 }

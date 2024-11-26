@@ -9,10 +9,6 @@
   line-height: 120%;
   color: $main-light-theme-text-color;
 
-  @media (prefers-color-scheme: dark) {
-    color: $main-black-theme-text-color;
-  }
-
   figure {
     width: 100%;
   }
@@ -31,4 +27,8 @@
     padding-left: 30px;
     padding-right: 30px;
   }
+}
+
+body[data-theme="dark"] .hard-skill-card {
+  color: $main-black-theme-text-color;
 }

@@ -16,10 +16,6 @@
   font-size: 14px;
   background-image: $subtitle-gradient-light-theme;
   margin-bottom: 40px;
-
-  @media (prefers-color-scheme: dark) {
-    background-image: $subtitle-gradient-black-theme;
-  }
 }
 
 %title {
@@ -30,10 +26,6 @@
   text-align: center;
   color: $second-title-light-theme-text-color;
   text-transform: capitalize;
-
-  @media (prefers-color-scheme: dark) {
-    color: $main-title-black-theme-text-color;
-  }
 
   @media screen and (min-width: $tablet-min-width) {
     font-size: 45px;
@@ -62,11 +54,6 @@
     font-size: 15px;
   }
 
-  @media (prefers-color-scheme: dark) {
-    border-color: $link-hover-text-color;
-    color: $main-black-theme-text-color;
-  }
-
   &:hover,
   &:focus {
     cursor: pointer;
@@ -86,10 +73,6 @@
   border-radius: 10px;
   padding: 10px 30px;
   background-color: inherit;
-
-  @media (prefers-color-scheme: dark) {
-    border-color: $input-dark-theme-border-color;
-  }
 
   @media screen and (min-width: $tablet-min-width) {
     min-width: 500px;

@@ -9,6 +9,14 @@
   @extend %title;
 }
 
+body[data-theme="dark"] .portfolio-title {
+  color: $main-title-black-theme-text-color;
+}
+
 .portfolio-subtitle {
   @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .portfolio-subtitle {
+  background-image: $subtitle-gradient-black-theme;
 }

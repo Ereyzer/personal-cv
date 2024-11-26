@@ -12,8 +12,16 @@
   @extend %title;
 }
 
+body[data-theme="dark"] .skills-title {
+  color: $main-title-black-theme-text-color;
+}
+
 .skills-subtitle {
   @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .skills-subtitle {
+  background-image: $subtitle-gradient-black-theme;
 }
 
 .skills-list {
@@ -51,5 +59,15 @@
     width: 24px;
     height: 24px;
     fill: currentcolor;
+  }
+}
+
+body[data-theme="dark"].more-button {
+  border-color: $link-hover-text-color;
+  color: $main-black-theme-text-color;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-text-color;
   }
 }

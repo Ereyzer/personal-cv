@@ -13,10 +13,10 @@
 .char {
   margin-bottom: 30px;
   color: $main-light-theme-text-color;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color: $main-black-theme-text-color;
-  }
+body[data-theme="dark"] .char {
+  color: $main-black-theme-text-color;
 }
 
 .social {
@@ -32,10 +32,6 @@
       height: 32px;
       border-radius: 50%;
       fill: $secod-light-theme-text-color;
-
-      @media (prefers-color-scheme: dark) {
-        fill: $second-black-theme-text-color;
-      }
 
       &:hover,
       &:focus {
@@ -56,8 +52,19 @@
   font-size: 12px;
   text-align: center;
   color: $secod-light-theme-text-color;
+}
 
-  @media (prefers-color-scheme: dark) {
+body[data-theme="dark"] {
+  .social-list a {
+    fill: $second-black-theme-text-color;
+
+    &:hover,
+    &:focus {
+      fill: $link-hover-text-color;
+    }
+  }
+
+  .copyrite-text {
     color: $second-black-theme-text-color;
   }
 }
