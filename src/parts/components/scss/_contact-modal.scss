@@ -1,0 +1,184 @@
+@use "../../../scss/vars" as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: #000, $alpha: 70%);
+  visibility: hidden;
+  transform: scale(0);
+  cursor: none;
+  transition: transform 500ms ease-in-out;
+  pointer-events: auto;
+  overflow: auto;
+}
+
+.modal-overlay.is-open {
+  visibility: visible;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.modal {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 30px;
+  background-color: $main-light-theme-bg-color;
+  width: 100%;
+  border-radius: 25px;
+
+  @media screen and (min-width: $tablet-min-width) {
+    max-width: $tablet-min-width;
+  }
+
+  @media screen and (min-width: $desctop-min-width) {
+    max-width: $desctop-min-width;
+  }
+}
+
+body[data-theme="dark"] .modal {
+  background-color: $main-black-theme-bg-color;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.modal-contact-title {
+  @extend %title;
+}
+
+body[data-theme="dark"] .modal-contact-title {
+  color: $main-title-black-theme-text-color;
+}
+
+.modal-contact-subtitle {
+  @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .modal-contact-subtitle {
+  background-image: $subtitle-gradient-black-theme;
+}
+
+.contact {
+  &-name,
+  &-email {
+    @extend %inputs;
+    @include inter-font(400);
+
+    font-size: 14px;
+    line-height: 150%;
+
+    &::placeholder {
+      color: $input-placeholder-color;
+    }
+
+    &:hover::placeholder,
+    &:focus::placeholder {
+      color: $link-hover-text-color;
+    }
+
+    @media screen and (min-width: $tablet-min-width) {
+      font-size: 20px;
+    }
+  }
+
+  &-message {
+    @extend %inputs;
+  }
+
+  &-label {
+    align-self: baseline;
+
+    @include inter-font(700);
+
+    font-size: 16px;
+    line-height: 120%;
+    color: $second-light-theme-text-black-color;
+
+    @media screen and (min-width: $tablet-min-width) {
+      font-size: 18px;
+    }
+  }
+
+  &-button {
+    @extend %raleway-bold-font;
+
+    border-radius: 10px;
+    width: 100%;
+    background-color: $main-light-theme-text-color;
+    color: $main-title-black-theme-text-color;
+    font-size: 16px;
+    line-height: 150%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    @media screen and (min-width: $tablet-min-width) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      font-size: 19px;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      box-shadow: inset 0 0 10px 5px rgb(0 0 0 / 30%);
+    }
+  }
+}
+
+body[data-theme="dark"] {
+  .contact {
+    &-name,
+    &-email,
+    &-message {
+      color: $main-black-theme-text-color;
+      border-color: $input-dark-theme-border-color;
+
+      &:hover,
+      &:focus {
+        border-color: $link-hover-text-color;
+      }
+    }
+
+    &-label {
+      color: $main-title-black-theme-text-color;
+    }
+
+    &-button {
+      background-color: $main-title-black-theme-text-color;
+      color: $main-light-theme-text-black-color;
+    }
+  }
+}
+
+.contact-modal-cross {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: $second-light-theme-text-black-color;
+
+    &:hover,
+    &:focus {
+      fill: $link-hover-text-color;
+    }
+  }
+}
+
+body[data-theme="dark"] .contact-modal-cross svg {
+  fill: $second-black-theme-text-color;
+}

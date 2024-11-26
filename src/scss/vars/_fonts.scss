@@ -1,0 +1,39 @@
+%oleo-script-regular {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+%raleway-bold-font {
+  font-family: Raleway, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+//   <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+@mixin inter-font($weight) {
+  font-family: Inter, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+}
+
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+@mixin montserrat-fount($weight) {
+  font-family: Montserrat, serif;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+}
+
+// weight 400,500,600,700
+@mixin poppins-font($weight) {
+  font-family: Poppins, sans-serif;
+  font-weight: $weight;
+  font-style: normal;
+}

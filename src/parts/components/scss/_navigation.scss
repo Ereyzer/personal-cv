@@ -1,0 +1,63 @@
+@use "../../../scss/vars" as *;
+
+.header-nav {
+  @media screen and (width <= calc($tablet-min-width - 1px)) {
+    display: none;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 40px;
+
+    li {
+      @include montserrat-fount(400);
+
+      font-size: 18px;
+      color: $second-light-theme-text-black-color;
+    }
+  }
+
+  a {
+    @extend %hover-animation;
+
+    &:hover,
+    &:focus {
+      color: $link-hover-text-color;
+    }
+  }
+}
+
+.modal-menu-overlay {
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 25px;
+
+    li {
+      @include montserrat-fount(400);
+
+      font-size: 18px;
+      color: $second-light-theme-text-black-color;
+      padding-bottom: 5px;
+      padding-right: 10px;
+      padding-left: 10px;
+      border-bottom: 1px solid $main-light-theme-text-color;
+      width: 100%;
+      text-align: end;
+    }
+  }
+
+  a {
+    @extend %hover-animation;
+
+    &:focus {
+      color: $link-hover-text-color;
+    }
+  }
+}
+
+body[data-theme="dark"] .header-nav li,
+body[data-theme="dark"] .modal-menu-overlay {
+  color: $second-title-black-theme-text-color;
+}
