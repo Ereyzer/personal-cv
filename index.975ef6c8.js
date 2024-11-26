@@ -678,13 +678,16 @@ exports.export = function(dest, destName, get) {
 var _theme = require("./theme");
 let currentTheme = (0, _theme.bodyElement).getAttribute((0, _theme.DATA_ATR));
 const BUTTON_ID = "theme-button";
-const btn = document.getElementById(BUTTON_ID);
-btn.addEventListener("click", ()=>{
+const btns = document.querySelectorAll(`[id="${BUTTON_ID}"]`);
+for (const btn of btns)btn.addEventListener("click", ()=>{
     const color = currentTheme === (0, _theme.SCHEMAS).DARK ? (0, _theme.SCHEMAS).LIGHT : (0, _theme.SCHEMAS).DARK;
     (0, _theme.bodyElement).setAttribute((0, _theme.DATA_ATR), color);
     (0, _theme.colorMode).propertyValue = color;
     (0, _theme.colorMode).setItem();
     currentTheme = color;
+});
+(0, _theme.bodyElement).addEventListener("click", (e)=>{
+    console.log(e.target.parentNode.parentNode);
 });
 
 },{"./theme":"bDTFa"}],"bDTFa":[function(require,module,exports) {
