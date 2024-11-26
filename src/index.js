@@ -1,2 +1,2 @@
 import './parts/components/js/modals';
-import './js/web_storage';
+import './parts/components/js/theme-changer';
