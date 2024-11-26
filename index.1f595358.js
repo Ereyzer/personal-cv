@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"farZc":[function(require,module,exports) {
+})({"17FMv":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "890e741a975ef6c8";
+module.bundle.HMR_BUNDLE_ID = "030dafb51f595358";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -583,64 +583,57 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     });
 }
 
-},{}],"8lqZg":[function(require,module,exports) {
-var _modals = require("./parts/components/js/modals");
-var _themeChanger = require("./parts/components/js/theme-changer");
-
-},{"./parts/components/js/modals":"5ML0P","./parts/components/js/theme-changer":"bfgxB"}],"5ML0P":[function(require,module,exports) {
-var _changerClass = require("../../../js/changer_class");
-const menu = new (0, _changerClass.Changer)({
-    button: "modal-menu-button",
-    changeNode: "modal-menu-overlay",
-    classForChange: "is-open"
-});
-menu.addLisener("click");
-const contact = new (0, _changerClass.Changer)({
-    button: "modal-contact-button",
-    changeNode: "modal-contact-overlay",
-    classForChange: "is-open"
-});
-contact.closeOnOverlay = function() {
-    this.changeNode[0].addEventListener("click", (e)=>{
-        if (e.currentTarget === e.target) this.addClass();
-    });
+},{}],"bDTFa":[function(require,module,exports) {
+var _webStorage = require("../../../js/web_storage");
+const SCHEMAS = {
+    DARK: "dark",
+    LIGHT: "light"
 };
-contact.addLisener("click");
-contact.closeOnOverlay();
+const DATA_ATR = "data-theme";
+const colorMode = new (0, _webStorage.WebStorage)({
+    propertyName: "color-mode"
+});
+const bodyElement = document.querySelector("body");
+if (!colorMode.propertyValue) {
+    if (window.matchMedia(`(prefers-color-scheme: ${SCHEMAS.DARK})`).matches) bodyElement.setAttribute(DATA_ATR, SCHEMAS.DARK);
+} else bodyElement.setAttribute(DATA_ATR, colorMode.propertyValue);
+let currentTheme = bodyElement.getAttribute(DATA_ATR);
+const BUTTON_ID = "theme-button";
+const button = document.getElementById(BUTTON_ID);
+button.addEventListener("click", ()=>{
+    const color = currentTheme === SCHEMAS.DARK ? SCHEMAS.LIGHT : SCHEMAS.DARK;
+    bodyElement.setAttribute(DATA_ATR, color);
+    colorMode.propertyValue = color;
+    colorMode.setItem();
+    currentTheme = color;
+});
 
-},{"../../../js/changer_class":"demfA"}],"demfA":[function(require,module,exports) {
+},{"../../../js/web_storage":"fiTRb"}],"fiTRb":[function(require,module,exports) {
+// window.matchMedia('(prefers-color-scheme: dark)').matches = true;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Changer", ()=>Changer);
-class Changer {
-    #button;
-    #changeNode;
-    #classForChange;
-    #addClass = ()=>{
-        for (const element of this.#changeNode)element.classList.toggle(this.#classForChange);
-    };
-    constructor({ button, changeNode, classForChange }){
-        this.#button = document.querySelectorAll(`[${button}]`);
-        this.#changeNode = document.querySelectorAll(`[${changeNode}]`);
-        this.#classForChange = classForChange;
+parcelHelpers.export(exports, "WebStorage", ()=>WebStorage);
+class WebStorage {
+    #propertyName;
+    #propertyValue;
+    constructor({ propertyName }){
+        this.#propertyName = propertyName;
+        this.getItem();
     }
-    addLisener(event) {
-        for (const element of this.#button)element.addEventListener(event, this.#addClass);
+    get propertyValue() {
+        return this.#propertyValue;
     }
-    removeLisener(event) {
-        for (const element of this.#button)element.removeEventListener(event, this.#addClass);
+    set propertyValue(newValue) {
+        this.#propertyValue = newValue;
     }
-    get changeNode() {
-        return this.#changeNode;
+    getItem() {
+        this.#propertyValue = localStorage.getItem(this.#propertyName);
     }
-    get button() {
-        return this.#button;
+    setItem() {
+        localStorage.setItem(this.#propertyName, this.#propertyValue);
     }
-    get classForChange() {
-        return this.#classForChange;
-    }
-    get addClass() {
-        return this.#addClass;
+    removeItem() {
+        localStorage.removeItem(this.#propertyName);
     }
 }
 
@@ -674,65 +667,6 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"bfgxB":[function(require,module,exports) {
-var _theme = require("./theme");
-let currentTheme = (0, _theme.bodyElement).getAttribute((0, _theme.DATA_ATR));
-const BUTTON_ID = "theme-button";
-const btn = document.getElementById(BUTTON_ID);
-btn.addEventListener("click", ()=>{
-    const color = currentTheme === (0, _theme.SCHEMAS).DARK ? (0, _theme.SCHEMAS).LIGHT : (0, _theme.SCHEMAS).DARK;
-    (0, _theme.bodyElement).setAttribute((0, _theme.DATA_ATR), color);
-    (0, _theme.colorMode).propertyValue = color;
-    (0, _theme.colorMode).setItem();
-    currentTheme = color;
-});
+},{}]},["17FMv","bDTFa"], "bDTFa", "parcelRequiref85d")
 
-},{"./theme":"bDTFa"}],"bDTFa":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SCHEMAS", ()=>SCHEMAS);
-parcelHelpers.export(exports, "DATA_ATR", ()=>DATA_ATR);
-parcelHelpers.export(exports, "colorMode", ()=>colorMode);
-parcelHelpers.export(exports, "bodyElement", ()=>bodyElement);
-var _webStorage = require("../../../js/web_storage");
-const SCHEMAS = {
-    DARK: "dark",
-    LIGHT: "light"
-};
-const DATA_ATR = "data-theme";
-const colorMode = new (0, _webStorage.WebStorage)({
-    propertyName: "color-mode"
-});
-const bodyElement = document.querySelector("body");
-
-},{"../../../js/web_storage":"fiTRb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fiTRb":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "WebStorage", ()=>WebStorage);
-class WebStorage {
-    #propertyName;
-    #propertyValue;
-    constructor({ propertyName }){
-        this.#propertyName = propertyName;
-        this.getItem();
-    }
-    get propertyValue() {
-        return this.#propertyValue;
-    }
-    set propertyValue(newValue) {
-        this.#propertyValue = newValue;
-    }
-    getItem() {
-        this.#propertyValue = window.localStorage.getItem(this.#propertyName);
-    }
-    setItem() {
-        window.localStorage.setItem(this.#propertyName, this.#propertyValue);
-    }
-    removeItem() {
-        window.localStorage.removeItem(this.#propertyName);
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","8lqZg"], "8lqZg", "parcelRequiref85d")
-
-//# sourceMappingURL=index.975ef6c8.js.map
+//# sourceMappingURL=index.1f595358.js.map
