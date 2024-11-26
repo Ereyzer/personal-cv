@@ -1,4 +1,4 @@
-import { Changer } from '../../../js/canger_class';
+import { Changer } from '../../../js/changer_class';
 
 const menu = new Changer({
   button: 'modal-menu-button',

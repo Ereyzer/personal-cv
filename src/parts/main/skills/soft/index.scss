@@ -12,8 +12,16 @@
   @extend %title;
 }
 
+body[data-theme="dark"] .offer-title {
+  color: $main-title-black-theme-text-color;
+}
+
 .offer-subtitle {
   @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .offer-subtitle {
+  background-image: $subtitle-gradient-black-theme;
 }
 
 .offer-list {

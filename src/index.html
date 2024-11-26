@@ -16,12 +16,31 @@
     <link rel="stylesheet" href="index.scss" />
     <title>Developer_CV</title>
   </head>
-  <body>
+  <body data-theme="light">
+    <!-- <script type="module" src="./parts/components/js/theme.js"></script> -->
+    <script type="module">
+      import {
+        colorMode,
+        SCHEMAS,
+        DATA_ATR,
+        bodyElement,
+      } from "./parts/components/js/theme.js";
+
+      if (!colorMode.propertyValue) {
+        if (
+          window.matchMedia(`(prefers-color-scheme: ${SCHEMAS.DARK})`).matches
+        ) {
+          bodyElement.setAttribute(DATA_ATR, SCHEMAS.DARK);
+        }
+      } else {
+        bodyElement.setAttribute(DATA_ATR, colorMode.propertyValue);
+      }
+    </script>
     <include src="./parts/header/header.html"></include>
     <include src="./parts/main/main.html"></include>
     <include src="./parts/footer/footer.html"></include>
     <include src="./parts/components/html/contact-modal.html"></include>
     <!-- <script type="module" src="./parts/components/js/contact-modal.js"></script> -->
-    <script type="module" src="./index.js"></script>
+    <script type="module" defer src="./index.js"></script>
   </body>
 </html>

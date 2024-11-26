@@ -21,13 +21,13 @@
   top: 0;
   right: 0;
   padding-top: 10px;
-  background-color: $main-light-theme-bg-color;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: $main-black-theme-bg-color;
-  }
+  background-color: var(--main-theme-bg-color);
 
   // TODO: ADD STYLES
+}
+
+body[data-theme="dark"] .modal-menu {
+  background-color: $main-black-theme-bg-color;
 }
 
 .modal-settings {

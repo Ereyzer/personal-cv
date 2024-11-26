@@ -13,8 +13,28 @@ export default [
       prettier
     },
     rules: {
-      'prettier/prettier': 'error',
-      semi: ['warn', 'always']
+      'prettier/prettier': 'error'
+    }
+  },
+  {
+    // Configuration for JavaScript files
+    languageOptions: {
+      globals: globals.browser // This ensures `document` and `window` are defined
+    },
+    files: ['**/*.js', '**/*.mjs'], // Specify the files to apply this config
+    plugins: {},
+    rules: {
+      'no-undef': ['error'],
+      'comma-dangle': [
+        'error',
+        {
+          arrays: 'never',
+          objects: 'never',
+          imports: 'never',
+          exports: 'never',
+          functions: 'never'
+        }
+      ]
     }
   },
   pluginJs.configs.recommended

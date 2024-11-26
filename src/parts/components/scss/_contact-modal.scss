@@ -9,40 +9,39 @@
   background-color: rgba($color: #000, $alpha: 70%);
   visibility: hidden;
   transform: scale(0);
-  pointer-events: none;
   cursor: none;
   transition: transform 500ms ease-in-out;
+  pointer-events: auto;
+  overflow: auto;
 }
 
 .modal-overlay.is-open {
   visibility: visible;
   transform: scale(1);
   cursor: pointer;
-  pointer-events: auto;
 }
 
 .modal {
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   padding: 30px;
   background-color: $main-light-theme-bg-color;
   width: 100%;
-  overflow: scroll;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: $main-black-theme-bg-color;
-  }
+  border-radius: 25px;
 
   @media screen and (min-width: $tablet-min-width) {
     max-width: $tablet-min-width;
-    max-height: 80%;
   }
 
   @media screen and (min-width: $desctop-min-width) {
     max-width: $desctop-min-width;
   }
+}
+
+body[data-theme="dark"] .modal {
+  background-color: $main-black-theme-bg-color;
 }
 
 .contact-form {
@@ -56,8 +55,16 @@
   @extend %title;
 }
 
+body[data-theme="dark"] .modal-contact-title {
+  color: $main-title-black-theme-text-color;
+}
+
 .modal-contact-subtitle {
   @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .modal-contact-subtitle {
+  background-image: $subtitle-gradient-black-theme;
 }
 
 .contact {
@@ -81,18 +88,10 @@
     @media screen and (min-width: $tablet-min-width) {
       font-size: 20px;
     }
-
-    @media (prefers-color-scheme: dark) {
-      color: $main-black-theme-text-color;
-    }
   }
 
   &-message {
     @extend %inputs;
-
-    @media (prefers-color-scheme: dark) {
-      color: $main-black-theme-text-color;
-    }
   }
 
   &-label {
@@ -104,21 +103,12 @@
     line-height: 120%;
     color: $second-light-theme-text-black-color;
 
-    @media (prefers-color-scheme: dark) {
-      color: $main-title-black-theme-text-color;
-    }
-
     @media screen and (min-width: $tablet-min-width) {
       font-size: 18px;
     }
-
-    // &:focus-within {
-    //   color: $link-hover-text-color;
-    // }
   }
 
   &-button {
-    // @extend %section-button;
     @extend %raleway-bold-font;
 
     border-radius: 10px;
@@ -130,15 +120,41 @@
     padding-top: 12px;
     padding-bottom: 12px;
 
-    @media (prefers-color-scheme: dark) {
-      background-color: $main-title-black-theme-text-color;
-      color: $main-light-theme-text-black-color;
-    }
-
     @media screen and (min-width: $tablet-min-width) {
       padding-top: 20px;
       padding-bottom: 20px;
       font-size: 19px;
+    }
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      box-shadow: inset 0 0 10px 5px rgb(0 0 0 / 30%);
+    }
+  }
+}
+
+body[data-theme="dark"] {
+  .contact {
+    &-name,
+    &-email,
+    &-message {
+      color: $main-black-theme-text-color;
+      border-color: $input-dark-theme-border-color;
+
+      &:hover,
+      &:focus {
+        border-color: $link-hover-text-color;
+      }
+    }
+
+    &-label {
+      color: $main-title-black-theme-text-color;
+    }
+
+    &-button {
+      background-color: $main-title-black-theme-text-color;
+      color: $main-light-theme-text-black-color;
     }
   }
 }
@@ -156,10 +172,6 @@
     height: 100%;
     fill: $second-light-theme-text-black-color;
 
-    @media (prefers-color-scheme: dark) {
-      fill: $second-black-theme-text-color;
-    }
-
     &:hover,
     &:focus {
       fill: $link-hover-text-color;
@@ -167,7 +179,6 @@
   }
 }
 
-// ???????
-// .contact-name:hover .contact-label {
-//     color: $link-hover-text-color;
-//   }
+body[data-theme="dark"] .contact-modal-cross svg {
+  fill: $second-black-theme-text-color;
+}

@@ -14,10 +14,6 @@
 
       font-size: 18px;
       color: $second-light-theme-text-black-color;
-
-      @media (prefers-color-scheme: dark) {
-        color: $second-title-black-theme-text-color;
-      }
     }
   }
 
@@ -49,10 +45,6 @@
       border-bottom: 1px solid $main-light-theme-text-color;
       width: 100%;
       text-align: end;
-
-      @media (prefers-color-scheme: dark) {
-        color: $second-title-black-theme-text-color;
-      }
     }
   }
 
@@ -63,4 +55,9 @@
       color: $link-hover-text-color;
     }
   }
+}
+
+body[data-theme="dark"] .header-nav li,
+body[data-theme="dark"] .modal-menu-overlay {
+  color: $second-title-black-theme-text-color;
 }
