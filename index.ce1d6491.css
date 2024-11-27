@@ -243,7 +243,7 @@ body[data-theme="dark"] {
   color: #4fc3f7;
 }
 
-body[data-theme="dark"] .header-nav li, body[data-theme="dark"] .modal-menu-overlay {
+body[data-theme="dark"] .header-nav li, body[data-theme="dark"] .modal-menu-overlay li {
   color: #c1c1c1;
 }
 
@@ -481,7 +481,7 @@ body[data-theme="dark"] .contact-modal-cross svg {
 }
 
 .modal-menu {
-  background-color: var(--main-theme-bg-color);
+  background-color: #e0e8f6;
   padding-top: 10px;
   position: relative;
   top: 0;

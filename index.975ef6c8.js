@@ -686,9 +686,6 @@ for (const btn of btns)btn.addEventListener("click", ()=>{
     (0, _theme.colorMode).setItem();
     currentTheme = color;
 });
-(0, _theme.bodyElement).addEventListener("click", (e)=>{
-    console.log(e.target.parentNode.parentNode);
-});
 
 },{"./theme":"bDTFa"}],"bDTFa":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
