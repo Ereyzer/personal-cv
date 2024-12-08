@@ -1,19 +1,32 @@
+@use "nav-dark";
 @use "../../../scss/vars" as *;
 
 .header-nav {
+  $color-gradient: linear-gradient(rgb(0 0 255 / 50%), rgb(255 255 0 / 50%));
+
   @media screen and (width <= calc($tablet-min-width - 1px)) {
     display: none;
   }
 
   nav ul {
     display: flex;
-    gap: 40px;
+    background-color: rgba($color: $main-light-theme-bg-color, $alpha: 50%);
 
     li {
       @include montserrat-fount(400);
 
       font-size: 18px;
       color: $second-light-theme-text-black-color;
+      padding-left: 20px;
+      padding-right: 20px;
+      transition: background-position-x 500ms linear;
+      transition: background-size 500ms linear;
+    }
+
+    li.chosen {
+      background-image: $color-gradient;
+      background-size: 0%;
+      background-repeat: no-repeat;
     }
   }
 
@@ -28,36 +41,46 @@
 }
 
 .modal-menu-overlay {
+  $color-gradient: linear-gradient(rgb(0 0 255 / 50%), rgb(255 255 0 / 50%));
+
   nav ul {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 25px;
 
     li {
       @include montserrat-fount(400);
 
       font-size: 18px;
       color: $second-light-theme-text-black-color;
-      padding-bottom: 5px;
-      padding-right: 10px;
-      padding-left: 10px;
-      border-bottom: 1px solid $main-light-theme-text-color;
+      padding: 10px 10px 5px;
       width: 100%;
       text-align: end;
+    }
+
+    li:not(:last-child) {
+      border-bottom: 1px solid $main-light-theme-text-color;
+    }
+
+    li.chosen {
+      background-image: $color-gradient;
+      background-size: 0%;
+      background-repeat: no-repeat;
+
+      &.hundred {
+        background-size: 100%;
+
+        // background-position-x: right;
+      }
     }
   }
 
   a {
     @extend %hover-animation;
 
-    &:focus {
+    &:focus,
+    &:hover {
       color: $link-hover-text-color;
     }
   }
-}
-
-body[data-theme="dark"] .header-nav li,
-body[data-theme="dark"] .modal-menu-overlay li {
-  color: $second-title-black-theme-text-color;
 }
