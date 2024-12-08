@@ -584,97 +584,11 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"8lqZg":[function(require,module,exports) {
-var _modals = require("./parts/components/js/modals");
 var _themeChanger = require("./parts/components/js/theme-changer");
+var _menuChoser = require("./js/menu-choser");
+var _modals = require("./parts/components/js/modals");
 
-},{"./parts/components/js/modals":"5ML0P","./parts/components/js/theme-changer":"bfgxB"}],"5ML0P":[function(require,module,exports) {
-var _changerClass = require("../../../js/changer_class");
-const menu = new (0, _changerClass.Changer)({
-    button: "modal-menu-button",
-    changeNode: "modal-menu-overlay",
-    classForChange: "is-open"
-});
-menu.addLisener("click");
-const contact = new (0, _changerClass.Changer)({
-    button: "modal-contact-button",
-    changeNode: "modal-contact-overlay",
-    classForChange: "is-open"
-});
-contact.closeOnOverlay = function() {
-    this.changeNode[0].addEventListener("click", (e)=>{
-        if (e.currentTarget === e.target) this.addClass();
-    });
-};
-contact.addLisener("click");
-contact.closeOnOverlay();
-
-},{"../../../js/changer_class":"demfA"}],"demfA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Changer", ()=>Changer);
-class Changer {
-    #button;
-    #changeNode;
-    #classForChange;
-    #addClass = ()=>{
-        for (const element of this.#changeNode)element.classList.toggle(this.#classForChange);
-    };
-    constructor({ button, changeNode, classForChange }){
-        this.#button = document.querySelectorAll(`[${button}]`);
-        this.#changeNode = document.querySelectorAll(`[${changeNode}]`);
-        this.#classForChange = classForChange;
-    }
-    addLisener(event) {
-        for (const element of this.#button)element.addEventListener(event, this.#addClass);
-    }
-    removeLisener(event) {
-        for (const element of this.#button)element.removeEventListener(event, this.#addClass);
-    }
-    get changeNode() {
-        return this.#changeNode;
-    }
-    get button() {
-        return this.#button;
-    }
-    get classForChange() {
-        return this.#classForChange;
-    }
-    get addClass() {
-        return this.#addClass;
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"bfgxB":[function(require,module,exports) {
+},{"./parts/components/js/theme-changer":"bfgxB","./js/menu-choser":"8x3u9","./parts/components/js/modals":"5ML0P"}],"bfgxB":[function(require,module,exports) {
 var _theme = require("./theme");
 let currentTheme = (0, _theme.bodyElement).getAttribute((0, _theme.DATA_ATR));
 const BUTTON_ID = "theme-button";
@@ -730,6 +644,201 @@ class WebStorage {
     }
     removeItem() {
         window.localStorage.removeItem(this.#propertyName);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"8x3u9":[function(require,module,exports) {
+var _trottleDebounce = require("./trottle-debounce");
+const tabletWidth = window.matchMedia("(min-width: 768px)");
+if (tabletWidth.matches) tabletVersion();
+else mobileVersion();
+function mobileVersion() {
+    const navLists = document.querySelector("div.modal-menu nav ul");
+    const chosenCls = "hundred";
+    navLists.addEventListener("click", (e)=>{
+        const liArr = [
+            ...e.currentTarget.children
+        ];
+        if (liArr.includes(e.target.parentNode)) {
+            for (const elem of liArr){
+                if (!elem.classList.contains(chosenCls)) continue;
+                elem.classList.remove(chosenCls);
+            }
+            e.target.parentNode.classList.add(chosenCls);
+        }
+    });
+}
+function tabletVersion() {
+    const mainElem = document.querySelector("main");
+    const sections = {
+        home: "home",
+        about: "about",
+        offer: "offer",
+        skills: "skills",
+        portfolio: "portfolio"
+    };
+    document.addEventListener("scroll", (0, _trottleDebounce.debounce)(lisenerEnv(sections, mainElem), 300));
+}
+function lisenerEnv(sections, mainElem) {
+    const viewportHeight = window.visualViewport.height;
+    let oldScroll = window.scrollY || 0;
+    const selectors = Object.values(sections).reduce((prev, key, i)=>{
+        prev[i] = {
+            selector: mainElem.children[key],
+            value: 0,
+            menuItem: document.querySelector(`div.header-nav a[href="#${key}"]`).parentNode
+        };
+        return prev;
+    }, []);
+    return ()=>selectors.forEach(({ selector, value, menuItem }, index, arr)=>{
+            const { top: t, bottom: b } = selector.getBoundingClientRect();
+            if (!(t - viewportHeight < 0 && b > 0)) {
+                if (value !== 0) {
+                    menuItem.style.backgroundSize = "0%";
+                    arr[index].value = 0;
+                }
+                oldScroll = window.scrollY;
+                return;
+            }
+            let percentOfElemInView = 0;
+            const partOfElenInView = viewportHeight - t;
+            if (partOfElenInView > viewportHeight) percentOfElemInView = b <= viewportHeight ? Math.round(b / (selector.clientHeight / 100)) : 100;
+            else percentOfElemInView = partOfElenInView <= selector.clientHeight ? Math.round(partOfElenInView / (selector.clientHeight / 100)) : 100;
+            if (value === percentOfElemInView) return;
+            const newScroll = window.scrollY;
+            switch(index){
+                case arr.length - 1:
+                    menuItem.style.backgroundPositionX = "left";
+                    break;
+                case 0:
+                    menuItem.style.backgroundPositionX = "right";
+                    break;
+                default:
+                    if (newScroll < oldScroll) // up 
+                    menuItem.style.backgroundPositionX = arr[index + 1].value > 0 ? "right" : "left";
+                    else // down 
+                    menuItem.style.backgroundPositionX = index > 0 && arr[index - 1].value > 0 ? "left" : "right";
+                    break;
+            }
+            menuItem.style.backgroundSize = `${percentOfElemInView}%`;
+            arr[index].value = percentOfElemInView;
+            oldScroll = newScroll;
+        });
+}
+
+},{"./trottle-debounce":"fKFaF"}],"fKFaF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "throtte", ()=>throtte);
+parcelHelpers.export(exports, "debounce", ()=>debounce);
+function throtte(calback, delay = 0) {
+    let lastCall = 0;
+    let wait;
+    let handle;
+    return (...args)=>{
+        const now = Date.now();
+        wait = lastCall + delay - now;
+        clearTimeout(handle);
+        if (wait <= 0) handle = setTimeout(()=>{
+            calback(...args);
+            lastCall = now;
+        });
+    };
+}
+const debounce = function(calback, delay = 0) {
+    let handle;
+    return (...args)=>{
+        clearTimeout(handle);
+        handle = setTimeout(()=>{
+            calback(...args);
+        }, delay);
+    };
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5ML0P":[function(require,module,exports) {
+var _changerClass = require("../../../js/changer_class");
+const menu = new (0, _changerClass.Changer)({
+    button: "modal-menu-button",
+    changeNode: "modal-menu-overlay",
+    classForChange: "is-open"
+});
+menu.addLisener("click");
+const contact = new (0, _changerClass.Changer)({
+    button: "modal-contact-button",
+    changeNode: "modal-contact-overlay",
+    classForChange: "is-open"
+});
+contact.closeOnOverlay = function() {
+    this.changeNode[0].addEventListener("click", (e)=>{
+        if (e.currentTarget === e.target) this.addClass();
+    });
+};
+contact.addLisener("click");
+contact.closeOnOverlay();
+
+},{"../../../js/changer_class":"demfA"}],"demfA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Changer", ()=>Changer);
+class Changer {
+    #button;
+    #changeNode;
+    #classForChange;
+    #addClass = ()=>{
+        for (const element of this.#changeNode)element.classList.toggle(this.#classForChange);
+    };
+    constructor({ button, changeNode, classForChange }){
+        this.#button = document.querySelectorAll(`[${button}]`);
+        this.#changeNode = document.querySelectorAll(`[${changeNode}]`);
+        this.#classForChange = classForChange;
+    }
+    addLisener(event) {
+        for (const element of this.#button)element.addEventListener(event, this.#addClass);
+    }
+    removeLisener(event) {
+        for (const element of this.#button)element.removeEventListener(event, this.#addClass);
+    }
+    get changeNode() {
+        return this.#changeNode;
+    }
+    get button() {
+        return this.#button;
+    }
+    get classForChange() {
+        return this.#classForChange;
+    }
+    get addClass() {
+        return this.#addClass;
     }
 }
 

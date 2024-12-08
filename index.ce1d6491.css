@@ -193,6 +193,14 @@ body[data-theme="dark"] {
   background-color: #1a1a1a;
 }
 
+body[data-theme="dark"] .header-nav ul {
+  background-color: #1a1a1acc;
+}
+
+body[data-theme="dark"] .header-nav li, body[data-theme="dark"] .modal-menu-overlay li {
+  color: #c1c1c1;
+}
+
 @media screen and (width <= 767px) {
   .header-nav {
     display: none;
@@ -200,17 +208,26 @@ body[data-theme="dark"] {
 }
 
 .header-nav nav ul {
-  gap: 40px;
+  background-color: #e0e8f680;
   display: flex;
 }
 
 .header-nav nav ul li {
   font-optical-sizing: auto;
   color: #050505;
+  padding-left: 20px;
+  padding-right: 20px;
   font-family: Montserrat, serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
+  transition: background-size .5s linear;
+}
+
+.header-nav nav ul li.chosen {
+  background-image: linear-gradient(#0000ff80, #ffff0080);
+  background-repeat: no-repeat;
+  background-size: 0%;
 }
 
 .header-nav a:hover, .header-nav a:focus {
@@ -220,7 +237,6 @@ body[data-theme="dark"] {
 .modal-menu-overlay nav ul {
   flex-direction: column;
   align-items: flex-end;
-  gap: 25px;
   display: flex;
 }
 
@@ -228,23 +244,30 @@ body[data-theme="dark"] {
   font-optical-sizing: auto;
   color: #050505;
   text-align: end;
-  border-bottom: 1px solid #484e53;
   width: 100%;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 10px 10px 5px;
   font-family: Montserrat, serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
 }
 
-.modal-menu-overlay a:focus {
-  color: #4fc3f7;
+.modal-menu-overlay nav ul li:not(:last-child) {
+  border-bottom: 1px solid #484e53;
 }
 
-body[data-theme="dark"] .header-nav li, body[data-theme="dark"] .modal-menu-overlay li {
-  color: #c1c1c1;
+.modal-menu-overlay nav ul li.chosen {
+  background-image: linear-gradient(#0000ff80, #ffff0080);
+  background-repeat: no-repeat;
+  background-size: 0%;
+}
+
+.modal-menu-overlay nav ul li.chosen.hundred {
+  background-size: 100%;
+}
+
+.modal-menu-overlay a:focus, .modal-menu-overlay a:hover {
+  color: #4fc3f7;
 }
 
 .theme-sun {
@@ -482,7 +505,7 @@ body[data-theme="dark"] .contact-modal-cross svg {
 
 .modal-menu {
   background-color: #e0e8f6;
-  padding-top: 10px;
+  border-radius: 10px;
   position: relative;
   top: 0;
   right: 0;
