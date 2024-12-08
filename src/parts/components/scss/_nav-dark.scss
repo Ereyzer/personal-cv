@@ -1,0 +1,10 @@
+@use "../../../scss/vars" as *;
+
+body[data-theme="dark"] .header-nav ul {
+  background-color: rgba($color: $main-black-theme-bg-color, $alpha: 80%);
+}
+
+body[data-theme="dark"] .header-nav li,
+body[data-theme="dark"] .modal-menu-overlay li {
+  color: $second-title-black-theme-text-color;
+}
