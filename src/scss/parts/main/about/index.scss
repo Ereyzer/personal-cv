@@ -1,0 +1,61 @@
+@use "../../../vars" as *;
+
+.about-container {
+  max-width: 840px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.about-title {
+  @extend %title;
+}
+
+body[data-theme="dark"] .about-title {
+  color: $main-title-black-theme-text-color;
+}
+
+.about-subtitle {
+  @extend %section-subtitle;
+}
+
+body[data-theme="dark"] .about-subtitle {
+  background-image: $subtitle-gradient-black-theme;
+}
+
+.about-text {
+  @include inter-font(500);
+
+  font-size: 13px;
+  line-height: 25px;
+  color: $main-light-theme-text-color;
+  text-align: center;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: $tablet-min-width) {
+    font-size: 17px;
+  }
+}
+
+body[data-theme="dark"] .about-text {
+  color: $main-black-theme-text-color;
+}
+
+.about-button {
+  @extend %section-button;
+
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+  width: fit-content;
+}
+
+body[data-theme="dark"] .about-button {
+  border-color: $link-hover-text-color;
+  color: $main-black-theme-text-color;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-text-color;
+  }
+}

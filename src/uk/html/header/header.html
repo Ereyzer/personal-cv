@@ -1,0 +1,29 @@
+<header>
+  <div class="container header-container">
+    <div class="logo-container">
+      <svg class="logo">
+        <use href="../images/svg/sprite.svg#logo"></use>
+      </svg>
+      <span class="logo-text">Laver</span>
+    </div>
+
+    <div class="header-nav">
+      <include src="./uk/html/components/navigation.html"></include>
+    </div>
+    <div class="lang-theme-block">
+      <include src="./uk/html/components/language.html"></include>
+
+      <include src="./uk/html/components/theme.html"></include>
+    </div>
+    <include src="./uk/html/components/modal-menu.html"></include>
+    <button type="button" class="burger" id="menu-button" modal-menu-button>
+      <svg>
+        <use
+          class="header-burger"
+          href="../images/svg/sprite.svg#icon-burger"
+        ></use>
+        <use class="header-cross" href="../images/svg/sprite.svg#cross"></use>
+      </svg>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,16 @@
+// .lang-theme-block {
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+// }
+.lang-switch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+
+  .lang-none {
+    display: none;
+  }
+}
