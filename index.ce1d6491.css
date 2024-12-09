@@ -180,19 +180,6 @@ input {
   }
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  letter-spacing: 0;
-  background-color: #e0e8f6;
-}
-
-body[data-theme="dark"] {
-  background-color: #1a1a1a;
-}
-
 body[data-theme="dark"] .header-nav ul {
   background-color: #1a1a1acc;
 }
@@ -311,6 +298,7 @@ body[data-theme="dark"] .theme-moon {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+  display: inline-block;
 }
 
 .lang-switch .lang-none {
@@ -1093,5 +1081,18 @@ body[data-theme="dark"] .social-list a:hover, body[data-theme="dark"] .social-li
 
 body[data-theme="dark"] .copyrite-text {
   color: #a9a9a9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  letter-spacing: 0;
+  background-color: #e0e8f6;
+}
+
+body[data-theme="dark"] {
+  background-color: #1a1a1a;
 }
 /*# sourceMappingURL=index.ce1d6491.css.map */
