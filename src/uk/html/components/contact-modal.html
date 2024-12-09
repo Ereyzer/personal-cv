@@ -1,0 +1,38 @@
+<div class="modal-overlay" modal-contact-overlay>
+  <div class="modal">
+    <form class="contact-form" action="" onsubmit="return false;">
+      <h2 class="modal-contact-title">Зв'яжіться</h2>
+      <h3 class="modal-contact-subtitle">Давайте працювати разом</h3>
+      <label for="name" class="contact-label">Ім'я</label>
+      <input
+        class="contact-name"
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Full Name"
+      />
+      <label for="email" class="contact-label">Електронна пошта</label>
+      <input
+        class="contact-email"
+        type="emai"
+        name="email"
+        id="email"
+        placeholder="example@mail.com"
+        required
+      />
+      <label for="message" class="contact-label">Повідомлення</label>
+      <textarea
+        class="contact-message"
+        type="text"
+        name="message"
+        id="message"
+      ></textarea>
+      <button class="contact-button" type="submit">Зв'яжіться</button>
+    </form>
+    <button type="button" class="contact-modal-cross" modal-contact-button>
+      <svg>
+        <use href="../images/svg/sprite.svg#cross"></use>
+      </svg>
+    </button>
+  </div>
+</div>

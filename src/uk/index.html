@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="../node_modules/modern-normalize/modern-normalize.css"
+      href="../../node_modules/modern-normalize/modern-normalize.css"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,18 +13,17 @@
       href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Montserrat:wght@100..900&family=Oleo+Script&family=Poppins:wght@400;500;600;700&family=Raleway:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.scss" />
+    <link rel="stylesheet" href="../index.scss" />
     <title>Developer_CV</title>
   </head>
   <body data-theme="light">
-    <!-- <script type="module" src="./html/components/js/theme.js"></script> -->
     <script type="module">
       import {
         colorMode,
         SCHEMAS,
         DATA_ATR,
         bodyElement,
-      } from "./js/components/theme.js";
+      } from "../js/components/theme.js";
 
       if (!colorMode.propertyValue) {
         if (
@@ -36,11 +35,10 @@
         bodyElement.setAttribute(DATA_ATR, colorMode.propertyValue);
       }
     </script>
-    <include src="./html/header/header.html"></include>
-    <include src="./html/main/main.html"></include>
-    <include src="./html/footer/footer.html"></include>
-    <include src="./html/components/contact-modal.html"></include>
-    <!-- <script type="module" src="./html/components/js/contact-modal.js"></script> -->
-    <script type="module" defer src="./index.js"></script>
+    <include src="./uk/html/header/header.html"></include>
+    <include src="./uk/html/main/main.html"></include>
+    <include src="./uk/html/footer/footer.html"></include>
+    <include src="./uk/html/components/contact-modal.html"></include>
+    <script type="module" defer src="../index.js"></script>
   </body>
 </html>
