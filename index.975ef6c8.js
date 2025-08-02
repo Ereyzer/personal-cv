@@ -912,7 +912,7 @@ exports.default = apiService;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BASE_API_URL", ()=>BASE_API_URL);
-const BASE_API_URL = "https://personal-cv-api-ivan-lavers-projects.vercel.app";
+const BASE_API_URL = "http://localhost:3000";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YeuQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
