@@ -24,7 +24,7 @@ class ApiService {
     console.log(url);
 
     const response = await fetch(url, {
-      headers: { 'Access-Control-Allow-Origin': true }
+      mode: 'cors'
     })
       .then((response) => {
         if (!response.ok) {
