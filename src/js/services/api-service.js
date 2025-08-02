@@ -23,7 +23,9 @@ class ApiService {
     const url = this.#BASE_API_URL + '/admin/info';
     console.log(url);
 
-    const response = await fetch(url)
+    const response = await fetch(url, {
+      headers: { 'Access-Control-Allow-Origin': true }
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(response.status);
