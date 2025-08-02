@@ -1,0 +1,40 @@
+import { BASE_API_URL } from '../config/constants';
+
+class ApiService {
+  #BASE_API_URL;
+
+  constructor () {
+    this.#BASE_API_URL = BASE_API_URL;
+    this.getInfo = this.#errorHAndler(this.getInfo);
+  }
+
+  #errorHAndler (func) {
+    return async (...args) => {
+      try {
+        return await func.apply(this, args);
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    };
+  }
+
+  async getInfo () {
+    const url = this.#BASE_API_URL + '/admin/info';
+    console.log(url);
+
+    const response = await fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+
+        return response.json();
+      })
+      .then((data) => data.data);
+    return response;
+  }
+}
+
+const apiService = new ApiService();
+export default apiService;
