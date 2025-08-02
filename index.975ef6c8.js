@@ -875,7 +875,7 @@ var _references = require("./references");
     (0, _references.avatarRef).setAttribute("src", data.avatar.cut);
 })();
 
-},{"../services/api-service":"jt8Zd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./references":"9YeuQ"}],"jt8Zd":[function(require,module,exports) {
+},{"../services/api-service":"jt8Zd","./references":"9YeuQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jt8Zd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _constants = require("../config/constants");
@@ -912,7 +912,7 @@ exports.default = apiService;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BASE_API_URL", ()=>BASE_API_URL);
-const BASE_API_URL = "http://localhost:3000";
+const BASE_API_URL = "https://personal-cv-api-ivan-lavers-projects.vercel.app";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YeuQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
