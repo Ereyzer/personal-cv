@@ -26,7 +26,7 @@ const langSwither = window.matchMedia('(min-width: 768px)').matches
         console.log('1 value: ', value);
 
         if (value !== 'index.html') {
-          prevValue += value;
+          prevValue += `/${value}`;
         }
         return prevValue;
       }, '/')
