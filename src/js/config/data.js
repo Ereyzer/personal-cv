@@ -1,6 +1,8 @@
 import apiService from '../services/api-service';
-import { avatarRef } from './references';
+import { aboutRef, avatarRef, introRef, language } from './references';
 (async () => {
   const data = await apiService.getInfo();
   avatarRef.setAttribute('src', data.avatar.cut);
+  introRef.innerText = data.intro[language];
+  aboutRef.innerText = data.intro[language];
 })();
