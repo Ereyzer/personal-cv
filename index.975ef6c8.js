@@ -1469,7 +1469,7 @@ var _references = require("./references");
     const data = await (0, _apiServiceDefault.default).getInfo();
     (0, _references.avatarRef).setAttribute("src", data.avatar.cut);
     (0, _references.introRef).innerText = data.intro[0, _references.language];
-    (0, _references.aboutRef).innerText = data.intro[0, _references.language];
+    (0, _references.aboutRef).innerText = data.about[0, _references.language];
 })();
 
 },{"../services/api-service":"jt8Zd","./references":"9YeuQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jt8Zd":[function(require,module,exports) {
