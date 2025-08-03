@@ -4,5 +4,5 @@ import { aboutRef, avatarRef, introRef, language } from './references';
   const data = await apiService.getInfo();
   avatarRef.setAttribute('src', data.avatar.cut);
   introRef.innerText = data.intro[language];
-  aboutRef.innerText = data.intro[language];
+  aboutRef.innerText = data.about[language];
 })();
