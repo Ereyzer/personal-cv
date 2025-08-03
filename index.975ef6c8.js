@@ -846,6 +846,7 @@ class Changer {
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3a0Bb":[function(require,module,exports) {
 var _webStorage = require("../web_storage");
+var _references = require("../config/references");
 const langPrefer = new (0, _webStorage.WebStorage)({
     propertyName: "lang-prefer"
 });
@@ -853,19 +854,41 @@ const linkAttribute = "lang-switch-tablet";
 const langSwither = window.matchMedia("(min-width: 768px)").matches ? document.querySelector(`[${linkAttribute}]`) : null;
 (()=>{
     if (!langPrefer.propertyValue) return;
-    // TODO: redirect!!!
-    if (langPrefer.propertyValue === document.children[0].getAttribute("lang")) return;
-    if (langPrefer.propertyValue === "uk") window.location.href += "uk/index.html";
+    console.log("test", (0, _references.location));
+    if (langPrefer.propertyValue === (0, _references.language)) {
+        const text = `${(0, _references.location).pathname}`;
+        const p = (0, _references.location).pathname.split("/").reduce((prevValue, value)=>{
+            if (value !== "index.html") prevValue += value;
+            return prevValue;
+        }, "/");
+        history.pushState(null, null, p + (0, _references.location).hash);
+        return;
+    }
+    if (langPrefer.propertyValue === "uk") window.location.href += "uk/";
     else if (langPrefer.propertyValue === "en") window.location.href = window.location.origin;
 })();
 langSwither.addEventListener("click", languageClick);
-function languageClick() {
+function languageClick(e) {
     const linkAttributeValue = langSwither.getAttribute(`${linkAttribute}`);
     langPrefer.propertyValue = linkAttributeValue;
     langPrefer.setItem();
 }
 
-},{"../web_storage":"fiTRb"}],"h6G96":[function(require,module,exports) {
+},{"../web_storage":"fiTRb","../config/references":"9YeuQ"}],"9YeuQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "location", ()=>location);
+parcelHelpers.export(exports, "language", ()=>language);
+parcelHelpers.export(exports, "avatarRef", ()=>avatarRef);
+parcelHelpers.export(exports, "introRef", ()=>introRef);
+parcelHelpers.export(exports, "aboutRef", ()=>aboutRef);
+const location = window.location;
+const language = document.children[0].getAttribute("lang");
+const avatarRef = document.getElementById("home-avatar-img");
+const introRef = document.getElementById("home-intro-text");
+const aboutRef = document.getElementById("about-text");
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h6G96":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _apiService = require("../services/api-service");
 var _apiServiceDefault = parcelHelpers.interopDefault(_apiService);
@@ -873,6 +896,8 @@ var _references = require("./references");
 (async ()=>{
     const data = await (0, _apiServiceDefault.default).getInfo();
     (0, _references.avatarRef).setAttribute("src", data.avatar.cut);
+    (0, _references.introRef).innerText = data.intro[0, _references.language];
+    (0, _references.aboutRef).innerText = data.intro[0, _references.language];
 })();
 
 },{"../services/api-service":"jt8Zd","./references":"9YeuQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jt8Zd":[function(require,module,exports) {
@@ -898,7 +923,9 @@ class ApiService {
     async getInfo() {
         const url = this.#BASE_API_URL + "/admin/info";
         console.log(url);
-        const response = await fetch(url).then((response)=>{
+        const response = await fetch(url, {
+            mode: "cors"
+        }).then((response)=>{
             if (!response.ok) throw new Error(response.status);
             return response.json();
         }).then((data)=>data.data);
@@ -913,12 +940,6 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BASE_API_URL", ()=>BASE_API_URL);
 const BASE_API_URL = "http://localhost:3000";
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YeuQ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "avatarRef", ()=>avatarRef);
-const avatarRef = document.getElementById("home-avatar-img");
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","8lqZg"], "8lqZg", "parcelRequiref85d")
 
