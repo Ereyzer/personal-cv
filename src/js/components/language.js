@@ -22,6 +22,9 @@ const langSwither = window.matchMedia('(min-width: 768px)').matches
 
     const p = path.join(
       text.split('/').reduce((prevValue, value) => {
+        console.log('1 prevValue: ', prevValue);
+        console.log('1 value: ', value);
+
         if (value !== 'index.html') {
           prevValue += value;
         }
