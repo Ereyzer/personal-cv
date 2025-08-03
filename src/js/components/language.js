@@ -16,22 +16,17 @@ const langSwither = window.matchMedia('(min-width: 768px)').matches
     return;
   }
 
-  console.log('test', location);
   if (langPrefer.propertyValue === language) {
     const text = `${location.pathname}`;
 
     const p = path.join(
       text.split('/').reduce((prevValue, value) => {
-        console.log('1 prevValue: ', prevValue);
-        console.log('1 value: ', value);
-
         if (value !== 'index.html') {
           prevValue += `/${value}`;
         }
         return prevValue;
       }, '/')
     );
-    console.log(p);
 
     window.history.pushState(null, null, p + location.hash);
     return;

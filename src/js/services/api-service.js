@@ -21,7 +21,6 @@ class ApiService {
 
   async getInfo () {
     const url = this.#BASE_API_URL + '/admin/info';
-    console.log(url);
 
     const response = await fetch(url, {
       mode: 'cors'
