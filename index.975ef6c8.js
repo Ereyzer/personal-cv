@@ -861,6 +861,8 @@ const langSwither = window.matchMedia("(min-width: 768px)").matches ? document.q
     if (langPrefer.propertyValue === (0, _references.language)) {
         const text = `${(0, _references.location).pathname}`;
         const p = (0, _pathDefault.default).join(text.split("/").reduce((prevValue, value)=>{
+            console.log("1 prevValue: ", prevValue);
+            console.log("1 value: ", value);
             if (value !== "index.html") prevValue += value;
             return prevValue;
         }, "/"));
