@@ -974,16 +974,16 @@ parcelHelpers.export(exports, "facebookRef", ()=>facebookRef);
 parcelHelpers.export(exports, "telegramRef", ()=>telegramRef);
 parcelHelpers.export(exports, "softSkillsListRef", ()=>softSkillsListRef);
 const location = window.location;
-const language = document.children[0].getAttribute("lang");
-const avatarRef = document.getElementById("home-avatar-img");
-const introRef = document.getElementById("home-intro-text");
-const aboutRef = document.getElementById("about-text");
-const linkedinRef = document.getElementById("social-link-linkedin");
-const githubRef = document.getElementById("social-link-github");
-const instagramRef = document.getElementById("social-link-instagram");
-const facebookRef = document.getElementById("social-link-facebook");
-const telegramRef = document.getElementById("social-link-telegram");
-const softSkillsListRef = document.getElementById("soft-skills-list");
+const language = document.children[0].getAttribute('lang');
+const avatarRef = document.getElementById('home-avatar-img');
+const introRef = document.getElementById('home-intro-text');
+const aboutRef = document.getElementById('about-text');
+const linkedinRef = document.getElementById('social-link-linkedin');
+const githubRef = document.getElementById('social-link-github');
+const instagramRef = document.getElementById('social-link-instagram');
+const facebookRef = document.getElementById('social-link-facebook');
+const telegramRef = document.getElementById('social-link-telegram');
+const softSkillsListRef = document.getElementById('soft-skills-list');
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gfVel":[function(require,module,exports,__globalThis) {
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
@@ -1567,11 +1567,11 @@ var _references = require("./references");
     (0, _references.avatarRef).setAttribute("src", data.avatar.cut);
     (0, _references.introRef).innerText = data.intro[0, _references.language];
     (0, _references.aboutRef).innerText = data.about[0, _references.language];
-    data.linkedin && (0, _references.linkedinRef).setAttribute("href", data.linkedin);
-    data.facebook && (0, _references.facebookRef).setAttribute("href", data.facebook);
-    data.instagram && (0, _references.instagramRef).setAttribute("href", data.instagram);
-    data.phone && (0, _references.telegramRef).setAttribute("href", data.phone);
-    data.github && (0, _references.githubRef).setAttribute("href", data.github);
+    // data.linkedin && linkedinRef.setAttribute('href', data.linkedin);
+    // data.facebook && facebookRef.setAttribute('href', data.facebook);
+    // data.instagram && instagramRef.setAttribute('href', data.instagram);
+    // data.phone && telegramRef.setAttribute('href', data.phone);
+    // data.github && githubRef.setAttribute('href', data.github);
     (0, _softSkills.getSoftSkills)((0, _references.language));
 })();
 
@@ -1586,9 +1586,9 @@ const image = new URL(require("abc80bbee2bdbb41"));
 async function getSoftSkills(language) {
     const softSkills = await (0, _apiServiceDefault.default).getSoftSkills(language.toUpperCase());
     const items = softSkills.map(({ _id, title, text })=>{
-        const li = document.createElement("li");
-        li.setAttribute("class", "offer-item");
-        li.setAttribute("offer-id", _id);
+        const li = document.createElement('li');
+        li.setAttribute('class', 'offer-item');
+        li.setAttribute('offer-id', _id);
         li.innerHTML = `<div class="skill-card">
     <div class="skill-icon">
       <img src="${image}" alt="defoult skill logo" />
@@ -1625,9 +1625,9 @@ class ApiService {
         };
     }
     async getInfo() {
-        const url = this.#BASE_API_URL + "/admin/info";
+        const url = this.#BASE_API_URL + '/admin/info';
         const response = await fetch(url, {
-            mode: "cors"
+            mode: 'cors'
         }).then((response)=>{
             if (!response.ok) throw new Error(response.status);
             return response.json();
@@ -1637,7 +1637,7 @@ class ApiService {
     async getSoftSkills(lang, perPage = 100, page = 1) {
         const url = this.#BASE_API_URL + `/admin/softSkills/${lang}?perPage=${perPage}&page=${page}`;
         const response = await fetch(url, {
-            mode: "cors"
+            mode: 'cors'
         }).then((response)=>{
             if (!response.ok) throw new Error(response.status);
             return response.json();
