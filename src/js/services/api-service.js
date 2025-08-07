@@ -6,6 +6,7 @@ class ApiService {
   constructor () {
     this.#BASE_API_URL = BASE_API_URL;
     this.getInfo = this.#errorHAndler(this.getInfo);
+    this.getSoftSkills = this.#errorHAndler(this.getSoftSkills);
   }
 
   #errorHAndler (func) {
@@ -30,6 +31,22 @@ class ApiService {
           throw new Error(response.status);
         }
 
+        return response.json();
+      })
+      .then((data) => data.data);
+    return response;
+  }
+
+  async getSoftSkills (lang, perPage = 100, page = 1) {
+    const url =
+      this.#BASE_API_URL +
+      `/admin/softSkills/${lang}?perPage=${perPage}&page=${page}`;
+
+    const response = await fetch(url, { mode: 'cors' })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
         return response.json();
       })
       .then((data) => data.data);

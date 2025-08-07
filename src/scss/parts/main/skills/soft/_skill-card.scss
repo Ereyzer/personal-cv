@@ -1,7 +1,8 @@
 @use "../../../../vars" as *;
 
 .skill-card {
-  max-width: 289px;
+  width: 289px;
+  height: 289px;
   padding: 29px 26px;
   background-color: #edf5ff;
   border-radius: 10px;
