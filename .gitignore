@@ -132,4 +132,4 @@ dist
 # setup structure ignor
 structure/
 dev_data/
-package-lock.json
+# package-lock.json
