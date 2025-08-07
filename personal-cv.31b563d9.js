@@ -6,7 +6,16 @@
 // anything defined in a previous bundle is accessed via the
 // orig method which is the require for previous bundles
 
-(function (modules, entry, mainEntry, parcelRequireName, globalName) {
+(function (
+  modules,
+  entry,
+  mainEntry,
+  parcelRequireName,
+  externals,
+  distDir,
+  publicUrl,
+  devServer
+) {
   /* eslint-disable no-undef */
   var globalObject =
     typeof globalThis !== 'undefined'
@@ -25,6 +34,7 @@
     typeof globalObject[parcelRequireName] === 'function' &&
     globalObject[parcelRequireName];
 
+  var importMap = previousRequire.i || {};
   var cache = previousRequire.cache || {};
   // Do not use `require` to prevent Webpack from trying to bundle this call
   var nodeRequire =
@@ -35,6 +45,9 @@
   function newRequire(name, jumped) {
     if (!cache[name]) {
       if (!modules[name]) {
+        if (externals[name]) {
+          return externals[name];
+        }
         // if we cannot find the module within our internal map or
         // cache jump to the current global require ie. the last bundle
         // that was added to the page.
@@ -73,7 +86,7 @@
         localRequire,
         module,
         module.exports,
-        this
+        globalObject
       );
     }
 
@@ -93,6 +106,7 @@
   function Module(moduleName) {
     this.id = moduleName;
     this.bundle = newRequire;
+    this.require = nodeRequire;
     this.exports = {};
   }
 
@@ -101,6 +115,10 @@
   newRequire.modules = modules;
   newRequire.cache = cache;
   newRequire.parent = previousRequire;
+  newRequire.distDir = distDir;
+  newRequire.publicUrl = publicUrl;
+  newRequire.devServer = devServer;
+  newRequire.i = importMap;
   newRequire.register = function (id, exports) {
     modules[id] = [
       function (require, module) {
@@ -109,6 +127,10 @@
       {},
     ];
   };
+
+  // Only insert newRequire.load when it is actually used.
+  // The code in this file is linted against ES5, so dynamic import is not allowed.
+  function $parcel$resolve(url) {  url = importMap[url] || url;  return import.meta.resolve(distDir + url);}newRequire.resolve = $parcel$resolve;
 
   Object.defineProperty(newRequire, 'root', {
     get: function () {
@@ -136,22 +158,19 @@
       define(function () {
         return mainExports;
       });
-
-      // <script>
-    } else if (globalName) {
-      this[globalName] = mainExports;
     }
   }
-})({"farZc":[function(require,module,exports) {
+})({"5j6Kf":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
-var HMR_ENV_HASH = "d6ea1d42532a7575";
+var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "890e741a975ef6c8";
+module.bundle.HMR_BUNDLE_ID = "d68ad56631b563d9";
 "use strict";
-/* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
+/* global HMR_HOST, HMR_PORT, HMR_SERVER_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
   HMRMessage,
@@ -188,6 +207,7 @@ interface ExtensionContext {
 declare var module: {bundle: ParcelRequire, ...};
 declare var HMR_HOST: string;
 declare var HMR_PORT: string;
+declare var HMR_SERVER_PORT: string;
 declare var HMR_ENV_HASH: string;
 declare var HMR_SECURE: boolean;
 declare var HMR_USE_SSE: boolean;
@@ -197,7 +217,7 @@ declare var __parcel__import__: (string) => Promise<void>;
 declare var __parcel__importScripts__: (string) => Promise<void>;
 declare var globalThis: typeof self;
 declare var ServiceWorkerGlobalScope: Object;
-*/ var OVERLAY_ID = "__parcel__error__overlay__";
+*/ var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
 function Module(moduleName) {
     OldModule.call(this, moduleName);
@@ -216,102 +236,135 @@ function Module(moduleName) {
 }
 module.bundle.Module = Module;
 module.bundle.hotData = {};
-var checkedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ ;
+var checkedAssets /*: {|[string]: boolean|} */ , disposedAssets /*: {|[string]: boolean|} */ , assetsToDispose /*: Array<[ParcelRequire, string]> */ , assetsToAccept /*: Array<[ParcelRequire, string]> */ , bundleNotFound = false;
 function getHostname() {
-    return HMR_HOST || (location.protocol.indexOf("http") === 0 ? location.hostname : "localhost");
+    return HMR_HOST || (typeof location !== 'undefined' && location.protocol.indexOf('http') === 0 ? location.hostname : 'localhost');
 }
 function getPort() {
-    return HMR_PORT || location.port;
+    return HMR_PORT || (typeof location !== 'undefined' ? location.port : HMR_SERVER_PORT);
 }
 // eslint-disable-next-line no-redeclare
+let WebSocket = globalThis.WebSocket;
+if (!WebSocket && typeof module.bundle.root === 'function') try {
+    // eslint-disable-next-line no-global-assign
+    WebSocket = module.bundle.root('ws');
+} catch  {
+// ignore.
+}
+var hostname = getHostname();
+var port = getPort();
+var protocol = HMR_SECURE || typeof location !== 'undefined' && location.protocol === 'https:' && ![
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0'
+].includes(hostname) ? 'wss' : 'ws';
+// eslint-disable-next-line no-redeclare
 var parent = module.bundle.parent;
-if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== "undefined") {
-    var hostname = getHostname();
-    var port = getPort();
-    var protocol = HMR_SECURE || location.protocol == "https:" && ![
-        "localhost",
-        "127.0.0.1",
-        "0.0.0.0"
-    ].includes(hostname) ? "wss" : "ws";
-    var ws;
-    if (HMR_USE_SSE) ws = new EventSource("/__parcel_hmr");
-    else try {
-        ws = new WebSocket(protocol + "://" + hostname + (port ? ":" + port : "") + "/");
-    } catch (err) {
-        if (err.message) console.error(err.message);
-        ws = {};
-    }
+if (!parent || !parent.isParcelRequire) {
     // Web extension context
-    var extCtx = typeof browser === "undefined" ? typeof chrome === "undefined" ? null : chrome : browser;
+    var extCtx = typeof browser === 'undefined' ? typeof chrome === 'undefined' ? null : chrome : browser;
     // Safari doesn't support sourceURL in error stacks.
     // eval may also be disabled via CSP, so do a quick check.
     var supportsSourceURL = false;
     try {
         (0, eval)('throw new Error("test"); //# sourceURL=test.js');
     } catch (err) {
-        supportsSourceURL = err.stack.includes("test.js");
+        supportsSourceURL = err.stack.includes('test.js');
     }
-    // $FlowFixMe
-    ws.onmessage = async function(event /*: {data: string, ...} */ ) {
-        checkedAssets = {} /*: {|[string]: boolean|} */ ;
-        assetsToAccept = [];
-        assetsToDispose = [];
-        var data /*: HMRMessage */  = JSON.parse(event.data);
-        if (data.type === "update") {
-            // Remove error overlay if there is one
-            if (typeof document !== "undefined") removeErrorOverlay();
-            let assets = data.assets.filter((asset)=>asset.envHash === HMR_ENV_HASH);
-            // Handle HMR Update
-            let handled = assets.every((asset)=>{
-                return asset.type === "css" || asset.type === "js" && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+    var ws;
+    if (HMR_USE_SSE) ws = new EventSource('/__parcel_hmr');
+    else try {
+        // If we're running in the dev server's node runner, listen for messages on the parent port.
+        let { workerData, parentPort } = module.bundle.root('node:worker_threads') /*: any*/ ;
+        if (workerData !== null && workerData !== void 0 && workerData.__parcel) {
+            parentPort.on('message', async (message)=>{
+                try {
+                    await handleMessage(message);
+                    parentPort.postMessage('updated');
+                } catch  {
+                    parentPort.postMessage('restart');
+                }
             });
-            if (handled) {
-                console.clear();
-                // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
-                if (typeof window !== "undefined" && typeof CustomEvent !== "undefined") window.dispatchEvent(new CustomEvent("parcelhmraccept"));
-                await hmrApplyUpdates(assets);
-                // Dispose all old assets.
-                let processedAssets = {} /*: {|[string]: boolean|} */ ;
-                for(let i = 0; i < assetsToDispose.length; i++){
-                    let id = assetsToDispose[i][1];
-                    if (!processedAssets[id]) {
-                        hmrDispose(assetsToDispose[i][0], id);
-                        processedAssets[id] = true;
-                    }
-                }
-                // Run accept callbacks. This will also re-execute other disposed assets in topological order.
-                processedAssets = {};
-                for(let i = 0; i < assetsToAccept.length; i++){
-                    let id = assetsToAccept[i][1];
-                    if (!processedAssets[id]) {
-                        hmrAccept(assetsToAccept[i][0], id);
-                        processedAssets[id] = true;
-                    }
-                }
-            } else fullReload();
+            // After the bundle has finished running, notify the dev server that the HMR update is complete.
+            queueMicrotask(()=>parentPort.postMessage('ready'));
         }
-        if (data.type === "error") {
-            // Log parcel errors to console
-            for (let ansiDiagnostic of data.diagnostics.ansi){
-                let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
-                console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + "\n" + stack + "\n\n" + ansiDiagnostic.hints.join("\n"));
-            }
-            if (typeof document !== "undefined") {
-                // Render the fancy html overlay
-                removeErrorOverlay();
-                var overlay = createErrorOverlay(data.diagnostics.html);
-                // $FlowFixMe
-                document.body.appendChild(overlay);
-            }
+    } catch  {
+        if (typeof WebSocket !== 'undefined') try {
+            ws = new WebSocket(protocol + '://' + hostname + (port ? ':' + port : '') + '/');
+        } catch (err) {
+            // Ignore cloudflare workers error.
+            if (err.message && !err.message.includes('Disallowed operation called within global scope')) console.error(err.message);
         }
-    };
-    if (ws instanceof WebSocket) {
-        ws.onerror = function(e) {
-            if (e.message) console.error(e.message);
+    }
+    if (ws) {
+        // $FlowFixMe
+        ws.onmessage = async function(event /*: {data: string, ...} */ ) {
+            var data /*: HMRMessage */  = JSON.parse(event.data);
+            await handleMessage(data);
         };
-        ws.onclose = function() {
-            console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
-        };
+        if (ws instanceof WebSocket) {
+            ws.onerror = function(e) {
+                if (e.message) console.error(e.message);
+            };
+            ws.onclose = function() {
+                console.warn("[parcel] \uD83D\uDEA8 Connection to the HMR server was lost");
+            };
+        }
+    }
+}
+async function handleMessage(data /*: HMRMessage */ ) {
+    checkedAssets = {} /*: {|[string]: boolean|} */ ;
+    disposedAssets = {} /*: {|[string]: boolean|} */ ;
+    assetsToAccept = [];
+    assetsToDispose = [];
+    bundleNotFound = false;
+    if (data.type === 'reload') fullReload();
+    else if (data.type === 'update') {
+        // Remove error overlay if there is one
+        if (typeof document !== 'undefined') removeErrorOverlay();
+        let assets = data.assets;
+        // Handle HMR Update
+        let handled = assets.every((asset)=>{
+            return asset.type === 'css' || asset.type === 'js' && hmrAcceptCheck(module.bundle.root, asset.id, asset.depsByBundle);
+        });
+        // Dispatch a custom event in case a bundle was not found. This might mean
+        // an asset on the server changed and we should reload the page. This event
+        // gives the client an opportunity to refresh without losing state
+        // (e.g. via React Server Components). If e.preventDefault() is not called,
+        // we will trigger a full page reload.
+        if (handled && bundleNotFound && assets.some((a)=>a.envHash !== HMR_ENV_HASH) && typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') handled = !window.dispatchEvent(new CustomEvent('parcelhmrreload', {
+            cancelable: true
+        }));
+        if (handled) {
+            console.clear();
+            // Dispatch custom event so other runtimes (e.g React Refresh) are aware.
+            if (typeof window !== 'undefined' && typeof CustomEvent !== 'undefined') window.dispatchEvent(new CustomEvent('parcelhmraccept'));
+            await hmrApplyUpdates(assets);
+            hmrDisposeQueue();
+            // Run accept callbacks. This will also re-execute other disposed assets in topological order.
+            let processedAssets = {};
+            for(let i = 0; i < assetsToAccept.length; i++){
+                let id = assetsToAccept[i][1];
+                if (!processedAssets[id]) {
+                    hmrAccept(assetsToAccept[i][0], id);
+                    processedAssets[id] = true;
+                }
+            }
+        } else fullReload();
+    }
+    if (data.type === 'error') {
+        // Log parcel errors to console
+        for (let ansiDiagnostic of data.diagnostics.ansi){
+            let stack = ansiDiagnostic.codeframe ? ansiDiagnostic.codeframe : ansiDiagnostic.stack;
+            console.error("\uD83D\uDEA8 [parcel]: " + ansiDiagnostic.message + '\n' + stack + '\n\n' + ansiDiagnostic.hints.join('\n'));
+        }
+        if (typeof document !== 'undefined') {
+            // Render the fancy html overlay
+            removeErrorOverlay();
+            var overlay = createErrorOverlay(data.diagnostics.html);
+            // $FlowFixMe
+            document.body.appendChild(overlay);
+        }
     }
 }
 function removeErrorOverlay() {
@@ -322,15 +375,15 @@ function removeErrorOverlay() {
     }
 }
 function createErrorOverlay(diagnostics) {
-    var overlay = document.createElement("div");
+    var overlay = document.createElement('div');
     overlay.id = OVERLAY_ID;
     let errorHTML = '<div style="background: black; opacity: 0.85; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; font-family: Menlo, Consolas, monospace; z-index: 9999;">';
     for (let diagnostic of diagnostics){
         let stack = diagnostic.frames.length ? diagnostic.frames.reduce((p, frame)=>{
             return `${p}
-<a href="/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
+<a href="${protocol === 'wss' ? 'https' : 'http'}://${hostname}:${port}/__parcel_launch_editor?file=${encodeURIComponent(frame.location)}" style="text-decoration: underline; color: #888" onclick="fetch(this.href); return false">${frame.location}</a>
 ${frame.code}`;
-        }, "") : diagnostic.stack;
+        }, '') : diagnostic.stack;
         errorHTML += `
       <div>
         <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">
@@ -338,19 +391,25 @@ ${frame.code}`;
         </div>
         <pre>${stack}</pre>
         <div>
-          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + "</div>").join("")}
+          ${diagnostic.hints.map((hint)=>"<div>\uD83D\uDCA1 " + hint + '</div>').join('')}
         </div>
-        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ""}
+        ${diagnostic.documentation ? `<div>\u{1F4DD} <a style="color: violet" href="${diagnostic.documentation}" target="_blank">Learn more</a></div>` : ''}
       </div>
     `;
     }
-    errorHTML += "</div>";
+    errorHTML += '</div>';
     overlay.innerHTML = errorHTML;
     return overlay;
 }
 function fullReload() {
-    if ("reload" in location) location.reload();
-    else if (extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
+    if (typeof location !== 'undefined' && 'reload' in location) location.reload();
+    else if (typeof extCtx !== 'undefined' && extCtx && extCtx.runtime && extCtx.runtime.reload) extCtx.runtime.reload();
+    else try {
+        let { workerData, parentPort } = module.bundle.root('node:worker_threads') /*: any*/ ;
+        if (workerData !== null && workerData !== void 0 && workerData.__parcel) parentPort.postMessage('restart');
+    } catch (err) {
+        console.error("[parcel] \u26A0\uFE0F An HMR update was not accepted. Please restart the process.");
+    }
 }
 function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     var modules = bundle.modules;
@@ -368,28 +427,28 @@ function getParents(bundle, id) /*: Array<[ParcelRequire, string]> */ {
     return parents;
 }
 function updateLink(link) {
-    var href = link.getAttribute("href");
+    var href = link.getAttribute('href');
     if (!href) return;
     var newLink = link.cloneNode();
     newLink.onload = function() {
         if (link.parentNode !== null) // $FlowFixMe
         link.parentNode.removeChild(link);
     };
-    newLink.setAttribute("href", // $FlowFixMe
-    href.split("?")[0] + "?" + Date.now());
+    newLink.setAttribute('href', // $FlowFixMe
+    href.split('?')[0] + '?' + Date.now());
     // $FlowFixMe
     link.parentNode.insertBefore(newLink, link.nextSibling);
 }
 var cssTimeout = null;
 function reloadCSS() {
-    if (cssTimeout) return;
+    if (cssTimeout || typeof document === 'undefined') return;
     cssTimeout = setTimeout(function() {
         var links = document.querySelectorAll('link[rel="stylesheet"]');
         for(var i = 0; i < links.length; i++){
             // $FlowFixMe[incompatible-type]
-            var href /*: string */  = links[i].getAttribute("href");
+            var href /*: string */  = links[i].getAttribute('href');
             var hostname = getHostname();
-            var servedFromHMRServer = hostname === "localhost" ? new RegExp("^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):" + getPort()).test(href) : href.indexOf(hostname + ":" + getPort());
+            var servedFromHMRServer = hostname === 'localhost' ? new RegExp('^(https?:\\/\\/(0.0.0.0|127.0.0.1)|localhost):' + getPort()).test(href) : href.indexOf(hostname + ':' + getPort());
             var absolute = /^https?:\/\//i.test(href) && href.indexOf(location.origin) !== 0 && !servedFromHMRServer;
             if (!absolute) updateLink(links[i]);
         }
@@ -397,23 +456,23 @@ function reloadCSS() {
     }, 50);
 }
 function hmrDownload(asset) {
-    if (asset.type === "js") {
-        if (typeof document !== "undefined") {
-            let script = document.createElement("script");
-            script.src = asset.url + "?t=" + Date.now();
-            if (asset.outputFormat === "esmodule") script.type = "module";
+    if (asset.type === 'js') {
+        if (typeof document !== 'undefined') {
+            let script = document.createElement('script');
+            script.src = asset.url + '?t=' + Date.now();
+            if (asset.outputFormat === 'esmodule') script.type = 'module';
             return new Promise((resolve, reject)=>{
                 var _document$head;
                 script.onload = ()=>resolve(script);
                 script.onerror = reject;
                 (_document$head = document.head) === null || _document$head === void 0 || _document$head.appendChild(script);
             });
-        } else if (typeof importScripts === "function") {
+        } else if (typeof importScripts === 'function') {
             // Worker scripts
-            if (asset.outputFormat === "esmodule") return import(asset.url + "?t=" + Date.now());
+            if (asset.outputFormat === 'esmodule') return import(asset.url + '?t=' + Date.now());
             else return new Promise((resolve, reject)=>{
                 try {
-                    importScripts(asset.url + "?t=" + Date.now());
+                    importScripts(asset.url + '?t=' + Date.now());
                     resolve();
                 } catch (err) {
                     reject(err);
@@ -437,7 +496,7 @@ async function hmrApplyUpdates(assets) {
                 var _hmrDownload;
                 return (_hmrDownload = hmrDownload(asset)) === null || _hmrDownload === void 0 ? void 0 : _hmrDownload.catch((err)=>{
                     // Web extension fix
-                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != "undefined" && global instanceof ServiceWorkerGlobalScope) {
+                    if (extCtx && extCtx.runtime && extCtx.runtime.getManifest().manifest_version == 3 && typeof ServiceWorkerGlobalScope != 'undefined' && global instanceof ServiceWorkerGlobalScope) {
                         extCtx.runtime.reload();
                         return;
                     }
@@ -462,8 +521,8 @@ async function hmrApplyUpdates(assets) {
 function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
     var modules = bundle.modules;
     if (!modules) return;
-    if (asset.type === "css") reloadCSS();
-    else if (asset.type === "js") {
+    if (asset.type === 'css') reloadCSS();
+    else if (asset.type === 'js') {
         let deps = asset.depsByBundle[bundle.HMR_BUNDLE_ID];
         if (deps) {
             if (modules[asset.id]) {
@@ -485,7 +544,10 @@ function hmrApply(bundle /*: ParcelRequire */ , asset /*:  HMRAsset */ ) {
                 fn,
                 deps
             ];
-        } else if (bundle.parent) hmrApply(bundle.parent, asset);
+        }
+        // Always traverse to the parent bundle, even if we already replaced the asset in this bundle.
+        // This is required in case modules are duplicated. We need to ensure all instances have the updated code.
+        if (bundle.parent) hmrApply(bundle.parent, asset);
     }
 }
 function hmrDelete(bundle, id) {
@@ -509,6 +571,7 @@ function hmrDelete(bundle, id) {
     } else if (bundle.parent) hmrDelete(bundle.parent, id);
 }
 function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByBundle /*: ?{ [string]: { [string]: string } }*/ ) {
+    checkedAssets = {};
     if (hmrAcceptCheckOne(bundle, id, depsByBundle)) return true;
     // Traverse parents breadth first. All possible ancestries must accept the HMR update, or we'll reload.
     let parents = getParents(module.bundle.root, id);
@@ -518,7 +581,7 @@ function hmrAcceptCheck(bundle /*: ParcelRequire */ , id /*: string */ , depsByB
         let a = hmrAcceptCheckOne(v[0], v[1], null);
         if (a) // If this parent accepts, stop traversing upward, but still consider siblings.
         accepted = true;
-        else {
+        else if (a !== null) {
             // Otherwise, queue the parents in the next level upward.
             let p = getParents(module.bundle.root, v[1]);
             if (p.length === 0) {
@@ -537,23 +600,39 @@ function hmrAcceptCheckOne(bundle /*: ParcelRequire */ , id /*: string */ , deps
     if (depsByBundle && !depsByBundle[bundle.HMR_BUNDLE_ID]) {
         // If we reached the root bundle without finding where the asset should go,
         // there's nothing to do. Mark as "accepted" so we don't reload the page.
-        if (!bundle.parent) return true;
-        return hmrAcceptCheck(bundle.parent, id, depsByBundle);
+        if (!bundle.parent) {
+            bundleNotFound = true;
+            return true;
+        }
+        return hmrAcceptCheckOne(bundle.parent, id, depsByBundle);
     }
-    if (checkedAssets[id]) return true;
+    if (checkedAssets[id]) return null;
     checkedAssets[id] = true;
     var cached = bundle.cache[id];
+    if (!cached) return true;
     assetsToDispose.push([
         bundle,
         id
     ]);
-    if (!cached || cached.hot && cached.hot._acceptCallbacks.length) {
+    if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
         assetsToAccept.push([
             bundle,
             id
         ]);
         return true;
     }
+    return false;
+}
+function hmrDisposeQueue() {
+    // Dispose all old assets.
+    for(let i = 0; i < assetsToDispose.length; i++){
+        let id = assetsToDispose[i][1];
+        if (!disposedAssets[id]) {
+            hmrDispose(assetsToDispose[i][0], id);
+            disposedAssets[id] = true;
+        }
+    }
+    assetsToDispose = [];
 }
 function hmrDispose(bundle /*: ParcelRequire */ , id /*: string */ ) {
     var cached = bundle.cache[id];
@@ -569,33 +648,37 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     bundle(id);
     // Run the accept callbacks in the new version of the module.
     var cached = bundle.cache[id];
-    if (cached && cached.hot && cached.hot._acceptCallbacks.length) cached.hot._acceptCallbacks.forEach(function(cb) {
-        var assetsToAlsoAccept = cb(function() {
-            return getParents(module.bundle.root, id);
-        });
-        if (assetsToAlsoAccept && assetsToAccept.length) {
-            assetsToAlsoAccept.forEach(function(a) {
-                hmrDispose(a[0], a[1]);
+    if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+        let assetsToAlsoAccept = [];
+        cached.hot._acceptCallbacks.forEach(function(cb) {
+            let additionalAssets = cb(function() {
+                return getParents(module.bundle.root, id);
             });
-            // $FlowFixMe[method-unbinding]
-            assetsToAccept.push.apply(assetsToAccept, assetsToAlsoAccept);
+            if (Array.isArray(additionalAssets) && additionalAssets.length) assetsToAlsoAccept.push(...additionalAssets);
+        });
+        if (assetsToAlsoAccept.length) {
+            let handled = assetsToAlsoAccept.every(function(a) {
+                return hmrAcceptCheck(a[0], a[1]);
+            });
+            if (!handled) return fullReload();
+            hmrDisposeQueue();
         }
-    });
+    }
 }
 
-},{}],"8lqZg":[function(require,module,exports) {
+},{}],"a0t4e":[function(require,module,exports,__globalThis) {
 var _themeChanger = require("./js/components/theme-changer");
 var _menuChoser = require("./js/menu-choser");
 var _modals = require("./js/components/modals");
 var _language = require("./js/components/language");
 var _data = require("./js/config/data");
 
-},{"./js/components/theme-changer":"l8MpS","./js/menu-choser":"8x3u9","./js/components/modals":"7QUYv","./js/components/language":"3a0Bb","./js/config/data":"h6G96"}],"l8MpS":[function(require,module,exports) {
+},{"./js/components/theme-changer":"2zovV","./js/menu-choser":"c9RpV","./js/components/modals":"jcNkG","./js/components/language":"dVIVQ","./js/config/data":"5tOTR"}],"2zovV":[function(require,module,exports,__globalThis) {
 var _theme = require("./theme");
 let currentTheme = (0, _theme.bodyElement).getAttribute((0, _theme.DATA_ATR));
-const BUTTON_ID = "theme-button";
+const BUTTON_ID = 'theme-button';
 const btns = document.querySelectorAll(`[id="${BUTTON_ID}"]`);
-for (const btn of btns)btn.addEventListener("click", ()=>{
+for (const btn of btns)btn.addEventListener('click', ()=>{
     const color = currentTheme === (0, _theme.SCHEMAS).DARK ? (0, _theme.SCHEMAS).LIGHT : (0, _theme.SCHEMAS).DARK;
     (0, _theme.bodyElement).setAttribute((0, _theme.DATA_ATR), color);
     (0, _theme.colorMode).propertyValue = color;
@@ -603,7 +686,7 @@ for (const btn of btns)btn.addEventListener("click", ()=>{
     currentTheme = color;
 });
 
-},{"./theme":"bQvts"}],"bQvts":[function(require,module,exports) {
+},{"./theme":"l799q"}],"l799q":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SCHEMAS", ()=>SCHEMAS);
@@ -612,16 +695,16 @@ parcelHelpers.export(exports, "colorMode", ()=>colorMode);
 parcelHelpers.export(exports, "bodyElement", ()=>bodyElement);
 var _webStorage = require("../web_storage");
 const SCHEMAS = {
-    DARK: "dark",
-    LIGHT: "light"
+    DARK: 'dark',
+    LIGHT: 'light'
 };
-const DATA_ATR = "data-theme";
+const DATA_ATR = 'data-theme';
 const colorMode = new (0, _webStorage.WebStorage)({
-    propertyName: "color-mode"
+    propertyName: 'color-mode'
 });
-const bodyElement = document.querySelector("body");
+const bodyElement = document.querySelector('body');
 
-},{"../web_storage":"fiTRb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fiTRb":[function(require,module,exports) {
+},{"../web_storage":"jkvPg","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jkvPg":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "WebStorage", ()=>WebStorage);
@@ -649,20 +732,20 @@ class WebStorage {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
     };
 };
 exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
+    Object.defineProperty(a, '__esModule', {
         value: true
     });
 };
 exports.exportAll = function(source, dest) {
     Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
         Object.defineProperty(dest, key, {
             enumerable: true,
             get: function() {
@@ -679,15 +762,15 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"8x3u9":[function(require,module,exports) {
+},{}],"c9RpV":[function(require,module,exports,__globalThis) {
 var _trottleDebounce = require("./trottle-debounce");
-const tabletWidth = window.matchMedia("(min-width: 768px)");
+const tabletWidth = window.matchMedia('(min-width: 768px)');
 if (tabletWidth.matches) tabletVersion();
 else mobileVersion();
 function mobileVersion() {
-    const navLists = document.querySelector("div.modal-menu nav ul");
-    const chosenCls = "hundred";
-    navLists.addEventListener("click", (e)=>{
+    const navLists = document.querySelector('div.modal-menu nav ul');
+    const chosenCls = 'hundred';
+    navLists.addEventListener('click', (e)=>{
         const liArr = [
             ...e.currentTarget.children
         ];
@@ -701,15 +784,15 @@ function mobileVersion() {
     });
 }
 function tabletVersion() {
-    const mainElem = document.querySelector("main");
+    const mainElem = document.querySelector('main');
     const sections = {
-        home: "home",
-        about: "about",
-        offer: "offer",
-        skills: "skills",
-        portfolio: "portfolio"
+        home: 'home',
+        about: 'about',
+        offer: 'offer',
+        skills: 'skills',
+        portfolio: 'portfolio'
     };
-    document.addEventListener("scroll", (0, _trottleDebounce.debounce)(lisenerEnv(sections, mainElem), 300));
+    document.addEventListener('scroll', (0, _trottleDebounce.debounce)(lisenerEnv(sections, mainElem), 300));
 }
 function lisenerEnv(sections, mainElem) {
     const viewportHeight = window.visualViewport.height;
@@ -726,7 +809,7 @@ function lisenerEnv(sections, mainElem) {
             const { top: t, bottom: b } = selector.getBoundingClientRect();
             if (!(t - viewportHeight < 0 && b > 0)) {
                 if (value !== 0) {
-                    menuItem.style.backgroundSize = "0%";
+                    menuItem.style.backgroundSize = '0%';
                     arr[index].value = 0;
                 }
                 oldScroll = window.scrollY;
@@ -740,16 +823,16 @@ function lisenerEnv(sections, mainElem) {
             const newScroll = window.scrollY;
             switch(index){
                 case arr.length - 1:
-                    menuItem.style.backgroundPositionX = "left";
+                    menuItem.style.backgroundPositionX = 'left';
                     break;
                 case 0:
-                    menuItem.style.backgroundPositionX = "right";
+                    menuItem.style.backgroundPositionX = 'right';
                     break;
                 default:
                     if (newScroll < oldScroll) // up
-                    menuItem.style.backgroundPositionX = arr[index + 1].value > 0 ? "right" : "left";
+                    menuItem.style.backgroundPositionX = arr[index + 1].value > 0 ? 'right' : 'left';
                     else // down
-                    menuItem.style.backgroundPositionX = index > 0 && arr[index - 1].value > 0 ? "left" : "right";
+                    menuItem.style.backgroundPositionX = index > 0 && arr[index - 1].value > 0 ? 'left' : 'right';
                     break;
             }
             menuItem.style.backgroundSize = `${percentOfElemInView}%`;
@@ -758,7 +841,7 @@ function lisenerEnv(sections, mainElem) {
         });
 }
 
-},{"./trottle-debounce":"fKFaF"}],"fKFaF":[function(require,module,exports) {
+},{"./trottle-debounce":"lI9gS"}],"lI9gS":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "throtte", ()=>throtte);
@@ -787,28 +870,28 @@ const debounce = function(calback, delay = 0) {
     };
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7QUYv":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jcNkG":[function(require,module,exports,__globalThis) {
 var _changerClass = require("../changer_class");
 const menu = new (0, _changerClass.Changer)({
-    button: "modal-menu-button",
-    changeNode: "modal-menu-overlay",
-    classForChange: "is-open"
+    button: 'modal-menu-button',
+    changeNode: 'modal-menu-overlay',
+    classForChange: 'is-open'
 });
-menu.addLisener("click");
+menu.addLisener('click');
 const contact = new (0, _changerClass.Changer)({
-    button: "modal-contact-button",
-    changeNode: "modal-contact-overlay",
-    classForChange: "is-open"
+    button: 'modal-contact-button',
+    changeNode: 'modal-contact-overlay',
+    classForChange: 'is-open'
 });
 contact.closeOnOverlay = function() {
-    this.changeNode[0].addEventListener("click", (e)=>{
+    this.changeNode[0].addEventListener('click', (e)=>{
         if (e.currentTarget === e.target) this.addClass();
     });
 };
-contact.addLisener("click");
+contact.addLisener('click');
 contact.closeOnOverlay();
 
-},{"../changer_class":"demfA"}],"demfA":[function(require,module,exports) {
+},{"../changer_class":"19YXy"}],"19YXy":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Changer", ()=>Changer);
@@ -844,39 +927,39 @@ class Changer {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3a0Bb":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"dVIVQ":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _webStorage = require("../web_storage");
 var _references = require("../config/references");
 var _path = require("path");
 var _pathDefault = parcelHelpers.interopDefault(_path);
 const langPrefer = new (0, _webStorage.WebStorage)({
-    propertyName: "lang-prefer"
+    propertyName: 'lang-prefer'
 });
-const linkAttribute = "lang-switch-tablet";
-const langSwither = window.matchMedia("(min-width: 768px)").matches ? document.querySelector(`[${linkAttribute}]`) : null;
+const linkAttribute = 'lang-switch-tablet';
+const langSwither = window.matchMedia('(min-width: 768px)').matches ? document.querySelector(`[${linkAttribute}]`) : null;
 (()=>{
     if (!langPrefer.propertyValue) return;
     if (langPrefer.propertyValue === (0, _references.language)) {
         const text = `${(0, _references.location).pathname}`;
-        const p = (0, _pathDefault.default).join(text.split("/").reduce((prevValue, value)=>{
-            if (value !== "index.html") prevValue += `/${value}`;
+        const p = (0, _pathDefault.default).join(text.split('/').reduce((prevValue, value)=>{
+            if (value !== 'index.html') prevValue += `/${value}`;
             return prevValue;
-        }, "/"));
+        }, '/'));
         window.history.pushState(null, null, p + (0, _references.location).hash);
         return;
     }
-    if (langPrefer.propertyValue === "uk") window.location.href += "uk/";
-    else if (langPrefer.propertyValue === "en") window.location.href = window.location.origin;
+    if (langPrefer.propertyValue === 'uk') window.location.href += 'uk/';
+    else if (langPrefer.propertyValue === 'en') window.location.href = window.location.origin;
 })();
-langSwither.addEventListener("click", languageClick);
+langSwither.addEventListener('click', languageClick);
 function languageClick(e) {
     const linkAttributeValue = langSwither.getAttribute(`${linkAttribute}`);
     langPrefer.propertyValue = linkAttributeValue;
     langPrefer.setItem();
 }
 
-},{"../web_storage":"fiTRb","../config/references":"9YeuQ","path":"loE3o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YeuQ":[function(require,module,exports) {
+},{"../web_storage":"jkvPg","../config/references":"a5m46","path":"gfVel","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"a5m46":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "location", ()=>location);
@@ -902,7 +985,7 @@ const facebookRef = document.getElementById("social-link-facebook");
 const telegramRef = document.getElementById("social-link-telegram");
 const softSkillsListRef = document.getElementById("soft-skills-list");
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"loE3o":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"gfVel":[function(require,module,exports,__globalThis) {
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
 // Copyright Joyent, Inc. and other Node contributors.
@@ -926,13 +1009,13 @@ const softSkillsListRef = document.getElementById("soft-skills-list");
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 var process = require("c0743715070b1b8a");
-"use strict";
+'use strict';
 function assertPath(path) {
-    if (typeof path !== "string") throw new TypeError("Path must be a string. Received " + JSON.stringify(path));
+    if (typeof path !== 'string') throw new TypeError('Path must be a string. Received ' + JSON.stringify(path));
 }
 // Resolves . and .. elements in a path with directory names
 function normalizeStringPosix(path, allowAboveRoot) {
-    var res = "";
+    var res = '';
     var lastSegmentLength = 0;
     var lastSlash = -1;
     var dots = 0;
@@ -946,21 +1029,21 @@ function normalizeStringPosix(path, allowAboveRoot) {
             else if (lastSlash !== i - 1 && dots === 2) {
                 if (res.length < 2 || lastSegmentLength !== 2 || res.charCodeAt(res.length - 1) !== 46 /*.*/  || res.charCodeAt(res.length - 2) !== 46 /*.*/ ) {
                     if (res.length > 2) {
-                        var lastSlashIndex = res.lastIndexOf("/");
+                        var lastSlashIndex = res.lastIndexOf('/');
                         if (lastSlashIndex !== res.length - 1) {
                             if (lastSlashIndex === -1) {
-                                res = "";
+                                res = '';
                                 lastSegmentLength = 0;
                             } else {
                                 res = res.slice(0, lastSlashIndex);
-                                lastSegmentLength = res.length - 1 - res.lastIndexOf("/");
+                                lastSegmentLength = res.length - 1 - res.lastIndexOf('/');
                             }
                             lastSlash = i;
                             dots = 0;
                             continue;
                         }
                     } else if (res.length === 2 || res.length === 1) {
-                        res = "";
+                        res = '';
                         lastSegmentLength = 0;
                         lastSlash = i;
                         dots = 0;
@@ -968,12 +1051,12 @@ function normalizeStringPosix(path, allowAboveRoot) {
                     }
                 }
                 if (allowAboveRoot) {
-                    if (res.length > 0) res += "/..";
-                    else res = "..";
+                    if (res.length > 0) res += '/..';
+                    else res = '..';
                     lastSegmentLength = 2;
                 }
             } else {
-                if (res.length > 0) res += "/" + path.slice(lastSlash + 1, i);
+                if (res.length > 0) res += '/' + path.slice(lastSlash + 1, i);
                 else res = path.slice(lastSlash + 1, i);
                 lastSegmentLength = i - lastSlash - 1;
             }
@@ -986,7 +1069,7 @@ function normalizeStringPosix(path, allowAboveRoot) {
 }
 function _format(sep, pathObject) {
     var dir = pathObject.dir || pathObject.root;
-    var base = pathObject.base || (pathObject.name || "") + (pathObject.ext || "");
+    var base = pathObject.base || (pathObject.name || '') + (pathObject.ext || '');
     if (!dir) return base;
     if (dir === pathObject.root) return dir + base;
     return dir + sep + base;
@@ -994,7 +1077,7 @@ function _format(sep, pathObject) {
 var posix = {
     // path.resolve([from ...], to)
     resolve: function resolve() {
-        var resolvedPath = "";
+        var resolvedPath = '';
         var resolvedAbsolute = false;
         var cwd;
         for(var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--){
@@ -1007,7 +1090,7 @@ var posix = {
             assertPath(path);
             // Skip empty entries
             if (path.length === 0) continue;
-            resolvedPath = path + "/" + resolvedPath;
+            resolvedPath = path + '/' + resolvedPath;
             resolvedAbsolute = path.charCodeAt(0) === 47 /*/*/ ;
         }
         // At this point the path should be resolved to a full absolute path, but
@@ -1015,21 +1098,21 @@ var posix = {
         // Normalize the path
         resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute);
         if (resolvedAbsolute) {
-            if (resolvedPath.length > 0) return "/" + resolvedPath;
-            else return "/";
+            if (resolvedPath.length > 0) return '/' + resolvedPath;
+            else return '/';
         } else if (resolvedPath.length > 0) return resolvedPath;
-        else return ".";
+        else return '.';
     },
     normalize: function normalize(path) {
         assertPath(path);
-        if (path.length === 0) return ".";
+        if (path.length === 0) return '.';
         var isAbsolute = path.charCodeAt(0) === 47 /*/*/ ;
         var trailingSeparator = path.charCodeAt(path.length - 1) === 47 /*/*/ ;
         // Normalize the path
         path = normalizeStringPosix(path, !isAbsolute);
-        if (path.length === 0 && !isAbsolute) path = ".";
-        if (path.length > 0 && trailingSeparator) path += "/";
-        if (isAbsolute) return "/" + path;
+        if (path.length === 0 && !isAbsolute) path = '.';
+        if (path.length > 0 && trailingSeparator) path += '/';
+        if (isAbsolute) return '/' + path;
         return path;
     },
     isAbsolute: function isAbsolute(path) {
@@ -1037,26 +1120,26 @@ var posix = {
         return path.length > 0 && path.charCodeAt(0) === 47 /*/*/ ;
     },
     join: function join() {
-        if (arguments.length === 0) return ".";
+        if (arguments.length === 0) return '.';
         var joined;
         for(var i = 0; i < arguments.length; ++i){
             var arg = arguments[i];
             assertPath(arg);
             if (arg.length > 0) {
                 if (joined === undefined) joined = arg;
-                else joined += "/" + arg;
+                else joined += '/' + arg;
             }
         }
-        if (joined === undefined) return ".";
+        if (joined === undefined) return '.';
         return posix.normalize(joined);
     },
     relative: function relative(from, to) {
         assertPath(from);
         assertPath(to);
-        if (from === to) return "";
+        if (from === to) return '';
         from = posix.resolve(from);
         to = posix.resolve(to);
-        if (from === to) return "";
+        if (from === to) return '';
         // Trim any leading backslashes
         var fromStart = 1;
         for(; fromStart < from.length; ++fromStart){
@@ -1099,12 +1182,12 @@ var posix = {
             if (fromCode !== toCode) break;
             else if (fromCode === 47 /*/*/ ) lastCommonSep = i;
         }
-        var out = "";
+        var out = '';
         // Generate the relative path based on the path difference between `to`
         // and `from`
         for(i = fromStart + lastCommonSep + 1; i <= fromEnd; ++i)if (i === fromEnd || from.charCodeAt(i) === 47 /*/*/ ) {
-            if (out.length === 0) out += "..";
-            else out += "/..";
+            if (out.length === 0) out += '..';
+            else out += '/..';
         }
         // Lastly, append the rest of the destination (`to`) path that comes after
         // the common path parts
@@ -1120,7 +1203,7 @@ var posix = {
     },
     dirname: function dirname(path) {
         assertPath(path);
-        if (path.length === 0) return ".";
+        if (path.length === 0) return '.';
         var code = path.charCodeAt(0);
         var hasRoot = code === 47 /*/*/ ;
         var end = -1;
@@ -1135,19 +1218,19 @@ var posix = {
             } else // We saw the first non-path separator
             matchedSlash = false;
         }
-        if (end === -1) return hasRoot ? "/" : ".";
-        if (hasRoot && end === 1) return "//";
+        if (end === -1) return hasRoot ? '/' : '.';
+        if (hasRoot && end === 1) return '//';
         return path.slice(0, end);
     },
     basename: function basename(path, ext) {
-        if (ext !== undefined && typeof ext !== "string") throw new TypeError('"ext" argument must be a string');
+        if (ext !== undefined && typeof ext !== 'string') throw new TypeError('"ext" argument must be a string');
         assertPath(path);
         var start = 0;
         var end = -1;
         var matchedSlash = true;
         var i;
         if (ext !== undefined && ext.length > 0 && ext.length <= path.length) {
-            if (ext.length === path.length && ext === path) return "";
+            if (ext.length === path.length && ext === path) return '';
             var extIdx = ext.length - 1;
             var firstNonSlashEnd = -1;
             for(i = path.length - 1; i >= 0; --i){
@@ -1200,7 +1283,7 @@ var posix = {
                     end = i + 1;
                 }
             }
-            if (end === -1) return "";
+            if (end === -1) return '';
             return path.slice(start, end);
         }
     },
@@ -1240,28 +1323,28 @@ var posix = {
         }
         if (startDot === -1 || end === -1 || // We saw a non-dot character immediately before the dot
         preDotState === 0 || // The (right-most) trimmed path component is exactly '..'
-        preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) return "";
+        preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) return '';
         return path.slice(startDot, end);
     },
     format: function format(pathObject) {
-        if (pathObject === null || typeof pathObject !== "object") throw new TypeError('The "pathObject" argument must be of type Object. Received type ' + typeof pathObject);
-        return _format("/", pathObject);
+        if (pathObject === null || typeof pathObject !== 'object') throw new TypeError('The "pathObject" argument must be of type Object. Received type ' + typeof pathObject);
+        return _format('/', pathObject);
     },
     parse: function parse(path) {
         assertPath(path);
         var ret = {
-            root: "",
-            dir: "",
-            base: "",
-            ext: "",
-            name: ""
+            root: '',
+            dir: '',
+            base: '',
+            ext: '',
+            name: ''
         };
         if (path.length === 0) return ret;
         var code = path.charCodeAt(0);
         var isAbsolute = code === 47 /*/*/ ;
         var start;
         if (isAbsolute) {
-            ret.root = "/";
+            ret.root = '/';
             start = 1;
         } else start = 0;
         var startDot = -1;
@@ -1316,18 +1399,18 @@ var posix = {
             ret.ext = path.slice(startDot, end);
         }
         if (startPart > 0) ret.dir = path.slice(0, startPart - 1);
-        else if (isAbsolute) ret.dir = "/";
+        else if (isAbsolute) ret.dir = '/';
         return ret;
     },
-    sep: "/",
-    delimiter: ":",
+    sep: '/',
+    delimiter: ':',
     win32: null,
     posix: null
 };
 posix.posix = posix;
 module.exports = posix;
 
-},{"c0743715070b1b8a":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"c0743715070b1b8a":"euskh"}],"euskh":[function(require,module,exports,__globalThis) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -1337,20 +1420,20 @@ var process = module.exports = {};
 var cachedSetTimeout;
 var cachedClearTimeout;
 function defaultSetTimout() {
-    throw new Error("setTimeout has not been defined");
+    throw new Error('setTimeout has not been defined');
 }
 function defaultClearTimeout() {
-    throw new Error("clearTimeout has not been defined");
+    throw new Error('clearTimeout has not been defined');
 }
 (function() {
     try {
-        if (typeof setTimeout === "function") cachedSetTimeout = setTimeout;
+        if (typeof setTimeout === 'function') cachedSetTimeout = setTimeout;
         else cachedSetTimeout = defaultSetTimout;
     } catch (e) {
         cachedSetTimeout = defaultSetTimout;
     }
     try {
-        if (typeof clearTimeout === "function") cachedClearTimeout = clearTimeout;
+        if (typeof clearTimeout === 'function') cachedClearTimeout = clearTimeout;
         else cachedClearTimeout = defaultClearTimeout;
     } catch (e) {
         cachedClearTimeout = defaultClearTimeout;
@@ -1440,11 +1523,11 @@ function Item(fun, array) {
 Item.prototype.run = function() {
     this.fun.apply(null, this.array);
 };
-process.title = "browser";
+process.title = 'browser';
 process.browser = true;
 process.env = {};
 process.argv = [];
-process.version = ""; // empty string to avoid regexp issues
+process.version = ''; // empty string to avoid regexp issues
 process.versions = {};
 function noop() {}
 process.on = noop;
@@ -1460,19 +1543,19 @@ process.listeners = function(name) {
     return [];
 };
 process.binding = function(name) {
-    throw new Error("process.binding is not supported");
+    throw new Error('process.binding is not supported');
 };
 process.cwd = function() {
-    return "/";
+    return '/';
 };
 process.chdir = function(dir) {
-    throw new Error("process.chdir is not supported");
+    throw new Error('process.chdir is not supported');
 };
 process.umask = function() {
     return 0;
 };
 
-},{}],"h6G96":[function(require,module,exports) {
+},{}],"5tOTR":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _softSkills = require("../components/softSkills");
 var _apiService = require("../services/api-service");
@@ -1492,7 +1575,35 @@ var _references = require("./references");
     (0, _softSkills.getSoftSkills)((0, _references.language));
 })();
 
-},{"../services/api-service":"jt8Zd","./references":"9YeuQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../components/softSkills":"foEea"}],"jt8Zd":[function(require,module,exports) {
+},{"../components/softSkills":"geQbc","../services/api-service":"bf7ft","./references":"a5m46","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"geQbc":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getSoftSkills", ()=>getSoftSkills);
+var _references = require("../config/references");
+var _apiService = require("../services/api-service");
+var _apiServiceDefault = parcelHelpers.interopDefault(_apiService);
+const image = new URL(require("abc80bbee2bdbb41"));
+async function getSoftSkills(language) {
+    const softSkills = await (0, _apiServiceDefault.default).getSoftSkills(language.toUpperCase());
+    const items = softSkills.map(({ _id, title, text })=>{
+        const li = document.createElement("li");
+        li.setAttribute("class", "offer-item");
+        li.setAttribute("offer-id", _id);
+        li.innerHTML = `<div class="skill-card">
+    <div class="skill-icon">
+      <img src="${image}" alt="defoult skill logo" />
+    </div>
+    <h4 class="skill-title">${title}</h4>
+    <p class="skill-text">
+      ${text}
+    </p>
+  </div>`;
+        return li;
+    });
+    (0, _references.softSkillsListRef).append(...items);
+}
+
+},{"../config/references":"a5m46","../services/api-service":"bf7ft","abc80bbee2bdbb41":"iVLZx","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bf7ft":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _constants = require("../config/constants");
@@ -1537,26 +1648,15 @@ class ApiService {
 const apiService = new ApiService();
 exports.default = apiService;
 
-},{"../config/constants":"jO5WR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jO5WR":[function(require,module,exports) {
+},{"../config/constants":"jb20V","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jb20V":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BASE_API_URL", ()=>BASE_API_URL);
-const BASE_API_URL = "http://localhost:3000";
+const BASE_API_URL = 'http://localhost:3000';
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"foEea":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getSoftSkills", ()=>getSoftSkills);
-var _references = require("../config/references");
-var _apiService = require("../services/api-service");
-var _apiServiceDefault = parcelHelpers.interopDefault(_apiService);
-async function getSoftSkills(language) {
-    const softSkills = await (0, _apiServiceDefault.default).getSoftSkills(language.toUpperCase());
-    console.log(softSkills);
-    softSkills.forEach((element)=>{});
-    0, _references.softSkillsListRef;
-}
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"iVLZx":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("Frame.c779efa1.svg") + "?" + Date.now();
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../config/references":"9YeuQ","../services/api-service":"jt8Zd"}]},["farZc","8lqZg"], "8lqZg", "parcelRequiref85d")
+},{}]},["5j6Kf","a0t4e"], "a0t4e", "parcelRequiref85d", {}, "./", "/")
 
-//# sourceMappingURL=index.975ef6c8.js.map
+//# sourceMappingURL=personal-cv.31b563d9.js.map
