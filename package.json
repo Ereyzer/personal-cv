@@ -12,7 +12,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md, scss, html}\"",
     "lint": "eslint --cache --fix --color --ignore-pattern 'dist/'",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
-    "build": "parcel build src/index.html --public-url /personal-cv/",
+    "build": "parcel build src/index.html --public-url ./personal-cv/",
     "clear:dist": " rm -rf ./dist/*",
     "predeploy": "npm run clear:dist; npm run build",
     "deploy": "gh-pages -d dist",
