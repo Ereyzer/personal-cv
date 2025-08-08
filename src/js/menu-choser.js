@@ -11,7 +11,7 @@ function mobileVersion () {
   const navLists = document.querySelector('div.modal-menu nav ul');
   const chosenCls = 'hundred';
 
-  navLists.addEventListener('click', (e) => {
+  navLists.addEventListener('click', e => {
     const liArr = [...e.currentTarget.children];
     if (liArr.includes(e.target.parentNode)) {
       for (const elem of liArr) {
