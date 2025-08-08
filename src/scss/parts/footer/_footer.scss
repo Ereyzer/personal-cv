@@ -1,4 +1,4 @@
-@use "../../vars" as *;
+@use '../../vars' as *;
 
 .footer-container {
   padding-bottom: 30px;
@@ -15,7 +15,7 @@
   color: $main-light-theme-text-color;
 }
 
-body[data-theme="dark"] .char {
+body[data-theme='dark'] .char {
   color: $main-black-theme-text-color;
 }
 
@@ -36,6 +36,7 @@ body[data-theme="dark"] .char {
       &:hover,
       &:focus {
         fill: $link-hover-text-color;
+        cursor: pointer;
       }
     }
   }
@@ -54,7 +55,7 @@ body[data-theme="dark"] .char {
   color: $secod-light-theme-text-color;
 }
 
-body[data-theme="dark"] {
+body[data-theme='dark'] {
   .social-list a {
     fill: $second-black-theme-text-color;
 
