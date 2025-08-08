@@ -13,8 +13,8 @@
     "lint": "eslint --cache --fix --color --ignore-pattern 'dist/'",
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
     "build": "parcel build src/index.html",
-    "clear": "rm -rf ./dist/*",
-    "predeploy": "npm run clear npm run build --  --public-url /personal-cv/",
+    "clear:dist": " rm -rf ./dist/*",
+    "predeploy": "npm run clear; npm run build --  --public-url /personal-cv/",
     "deploy": "gh-pages -d dist",
     "deployment": "./scripts/deploy.sh",
     "lintstandard": "semistandard --fix | snazzy"
