@@ -35,12 +35,12 @@
     <path d="M30.4,40h-4h-4c0,0,0-2.4,0-4c-5.5,1.2-7-3-7-3c-1-2-2-3-2-3c-2-1.2,0-1,0-1c2,0,3,2,3,2  c1.8,3,4.9,2.5,6,2c0-1,0.4-2.5,1-3c-4.4-0.5-8-3-8-8s1-6,2-7c-0.2-0.5-1-2.3,0-5c0,0,2,0,4,3c1-1,4-1,5-1c1,0,4,0,5,1c2-3,4-3,4-3  c1.1,2.7,0.2,4.5,0,5c1,1,2,2,2,7s-3.6,7.5-8,8c0.6,0.5,1,2.2,1,3L30.4,40L30.4,40z" />
 </symbol>
 <symbol id="github" viewBox="0 0 32 32">
-    <use width="32" height="32" href="#circle"></use>
-    <use href="#gitcat" width="30" height="30"></use>
+    <use width="32" height="32" xlink:href="#circle"></use>
+    <use xlink:href="#gitcat" width="30" height="30"></use>
 </symbol>
-<symbol >
+<!-- <symbol >
     <use href="#github"></use>
-</symbol>
+</symbol> -->
 <!-- facebook -->
 <symbol id="facebook" viewBox="0 0 32 32">
     <use width="32" height="32" href="#circle"></use>
@@ -94,10 +94,10 @@
     <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 
 	489.292,457.678 277.331,245.004 489.292,32.337 "/>
 </symbol>
-<symbol >
+<!-- <symbol >
     <use href="#facebook"></use>
     <use href="#github"></use>
-</symbol>
+</symbol> -->
 </defs>
 
 </svg>
