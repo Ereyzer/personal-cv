@@ -1,0 +1,7 @@
+{
+  "transformers": {
+    "*.svg": [
+      "@parcel/transformer-raw"
+    ]
+  }
+}
