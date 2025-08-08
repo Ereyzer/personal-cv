@@ -10,16 +10,16 @@ export default [
     ...html.configs['flat/recommended'],
     files: ['**/*.html'],
     plugins: {
-      prettier,
+      prettier
     },
     rules: {
-      'prettier/prettier': ['error', {}, { usePrettierrc: true }],
-    },
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }]
+    }
   },
   {
     // Configuration for JavaScript files
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node }, // This ensures `document` and `window` are defined
+      globals: { ...globals.browser, ...globals.node } // This ensures `document` and `window` are defined
     },
     files: ['**/*.js', '**/*.mjs'], // Specify the files to apply this config
     plugins: {},
@@ -37,14 +37,14 @@ export default [
           dynamicImports: 'never',
           enums: 'never',
           generics: 'never',
-          tuples: 'never',
-        },
+          tuples: 'never'
+        }
       ],
-      quotes: ['error', 'single'],
-    },
+      quotes: ['error', 'single']
+    }
   },
   pluginJs.configs.recommended,
   {
-    ignores: ['dist/', 'node_modules/', 'eslint.config.mjs'],
-  },
+    ignores: ['dist/', 'node_modules/', 'eslint.config.mjs']
+  }
 ];
