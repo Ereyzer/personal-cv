@@ -1,5 +1,5 @@
-@use "skill";
-@use "../../../../vars" as *;
+@use 'skill';
+@use '../../../../vars' as *;
 
 .skills-container {
   max-width: 840px;
@@ -12,7 +12,7 @@
   @extend %title;
 }
 
-body[data-theme="dark"] .skills-title {
+body[data-theme='dark'] .skills-title {
   color: $main-title-black-theme-text-color;
 }
 
@@ -20,7 +20,7 @@ body[data-theme="dark"] .skills-title {
   @extend %section-subtitle;
 }
 
-body[data-theme="dark"] .skills-subtitle {
+body[data-theme='dark'] .skills-subtitle {
   background-image: $subtitle-gradient-black-theme;
 }
 
@@ -33,6 +33,10 @@ body[data-theme="dark"] .skills-subtitle {
   @media screen and (min-width: $tablet-min-width) {
     flex-flow: row wrap;
     justify-content: flex-start;
+
+    $width: 100%;
+
+    gap: 5px calc(($width - 720px) / 2);
   }
 
   li {
@@ -62,7 +66,7 @@ body[data-theme="dark"] .skills-subtitle {
   }
 }
 
-body[data-theme="dark"].more-button {
+body[data-theme='dark'].more-button {
   border-color: $link-hover-text-color;
   color: $main-black-theme-text-color;
 

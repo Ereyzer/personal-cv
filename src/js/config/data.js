@@ -1,4 +1,5 @@
 import { addLinks } from '../components/addLinks';
+import { getHardSkills } from '../components/hardSkills';
 import { getSoftSkills } from '../components/softSkills';
 import apiService from '../services/api-service';
 import { aboutRef, avatarRef, introRef, language } from './references';
@@ -11,4 +12,5 @@ import { aboutRef, avatarRef, introRef, language } from './references';
   aboutRef.innerText = data.about[language];
   addLinks(data);
   getSoftSkills(language);
+  getHardSkills();
 })();
