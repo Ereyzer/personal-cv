@@ -7,6 +7,7 @@ class ApiService {
     this.#BASE_API_URL = BASE_API_URL;
     this.getInfo = this.#errorHAndler(this.getInfo);
     this.getSoftSkills = this.#errorHAndler(this.getSoftSkills);
+    this.getHardSkills = this.#errorHAndler(this.getHardSkills);
   }
 
   #errorHAndler (func) {
@@ -41,6 +42,21 @@ class ApiService {
     const url =
       this.#BASE_API_URL +
       `/admin/softSkills/${lang}?perPage=${perPage}&page=${page}`;
+
+    const response = await fetch(url, { mode: 'cors' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
+      })
+      .then(data => data.data);
+    return response;
+  }
+
+  async getHardSkills (perPage = 100, page = 1) {
+    const url =
+      this.#BASE_API_URL + `/admin/hardSkills?perPage=${perPage}&page=${page}`;
 
     const response = await fetch(url, { mode: 'cors' })
       .then(response => {

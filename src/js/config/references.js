@@ -11,5 +11,6 @@ export const socialLinkListRef = document.getElementById('social-link-list');
 // export const instagramRef = document.getElementById('social-link-instagram');
 // export const facebookRef = document.getElementById('social-link-facebook');
 // export const telegramRef = document.getElementById('social-link-telegram');
+export const hardSkillsListRef = document.getElementById('hard-skills-list');
 
 export const softSkillsListRef = document.getElementById('soft-skills-list');
