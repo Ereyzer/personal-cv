@@ -26,14 +26,14 @@ class ApiService {
     const response = await fetch(url, {
       mode: 'cors'
     })
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error(response.status);
         }
 
         return response.json();
       })
-      .then((data) => data.data);
+      .then(data => data.data);
     return response;
   }
 
@@ -43,13 +43,13 @@ class ApiService {
       `/admin/softSkills/${lang}?perPage=${perPage}&page=${page}`;
 
     const response = await fetch(url, { mode: 'cors' })
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw new Error(response.status);
         }
         return response.json();
       })
-      .then((data) => data.data);
+      .then(data => data.data);
     return response;
   }
 }

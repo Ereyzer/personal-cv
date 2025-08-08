@@ -13,7 +13,7 @@ export default [
       prettier
     },
     rules: {
-      'prettier/prettier': 'error'
+      'prettier/prettier': ['error', {}, { usePrettierrc: true }]
     }
   },
   {

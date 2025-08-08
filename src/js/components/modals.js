@@ -13,7 +13,7 @@ const contact = new Changer({
   classForChange: 'is-open'
 });
 contact.closeOnOverlay = function () {
-  this.changeNode[0].addEventListener('click', (e) => {
+  this.changeNode[0].addEventListener('click', e => {
     if (e.currentTarget === e.target) {
       this.addClass();
     }
