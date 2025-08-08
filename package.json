@@ -14,7 +14,7 @@
     "lint:css": "stylelint --fix '**/*.scss' --ignore-path .stylelintignore",
     "build": "parcel build src/index.html",
     "clear:dist": " rm -rf ./dist/*",
-    "predeploy": "npm run clear:dist; npm run build --public-url /personal-cv/",
+    "predeploy": "npm run clear:dist; npm run build --public-url ./",
     "deploy": "gh-pages -d dist",
     "deployment": "./scripts/deploy.sh",
     "lintstandard": "semistandard --fix | snazzy"
