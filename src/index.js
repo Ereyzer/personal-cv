@@ -1,6 +1,5 @@
-import './images/svg/sprite.svg';
 import './js/components/theme-changer';
 import './js/menu-choser';
 import './js/components/modals';
-// import "./js/components/language";
-// import "./js/config/data";
+import './js/components/language';
+import './js/config/data';
