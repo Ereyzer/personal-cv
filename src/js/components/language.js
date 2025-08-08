@@ -1,9 +1,6 @@
 import { WebStorage } from '../web_storage';
-import {
-  language
-  // location
-} from '../config/references';
-// import path from "path";
+import { language, location } from '../config/references';
+import path from 'path';
 
 const langPrefer = new WebStorage({
   propertyName: 'lang-prefer'
@@ -20,23 +17,23 @@ const langSwither = window.matchMedia('(min-width: 768px)').matches
   }
 
   if (langPrefer.propertyValue === language) {
-    // const text = `${location.pathname}`;
+    const text = `${location.pathname}`;
 
-    // const p = path.join(
-    //   text.split("/").reduce((prevValue, value) => {
-    //     if (value !== "index.html") {
-    //       prevValue += `/${value}`;
-    //     }
-    //     return prevValue;
-    //   }, "/")
-    // );
+    const p = path.join(
+      text.split('/').reduce((prevValue, value) => {
+        if (value !== 'index.html') {
+          prevValue += `/${value}`;
+        }
+        return prevValue;
+      }, '/')
+    );
 
-    // window.history.pushState(null, null, p + location.hash);
+    window.history.pushState(null, null, p + location.hash);
     return;
   }
 
   if (langPrefer.propertyValue === 'uk') {
-    window.location.href += 'uk/index.html';
+    window.location.href += 'uk';
   } else if (langPrefer.propertyValue === 'en') {
     window.location.href = window.location.origin;
   }
