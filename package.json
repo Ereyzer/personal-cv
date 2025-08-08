@@ -26,16 +26,13 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md,html}": [
-      "npm run format",
-      "git add"
+      "prettier --write"
     ],
     "*.{css,scss}": [
-      "npm run lint:css",
-      "git add"
+      "npm run lint:css"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "npm run lintstandard",
-      "git add"
+      "npm run lintstandard"
     ]
   },
   "repository": {
