@@ -68,6 +68,33 @@ class ApiService {
       .then(data => data.data);
     return response;
   }
+
+  async getResume () {
+    const url = BASE_API_URL + '/admin/info/resume';
+    const response = await fetch(url, { mode: 'cors' })
+      .then(async response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const contentDisposition = response.headers.get('Content-Disposition');
+        let originalFileName = 'default_filename.pdf';
+
+        if (contentDisposition) {
+          // Use a regular expression to extract the filename from the header value
+          const filenameMatch = contentDisposition.match(/filename="([^"]+)"/);
+          if (filenameMatch && filenameMatch[1]) {
+            originalFileName = filenameMatch[1];
+          }
+        }
+        return { file: await response.blob(), originalFileName };
+      })
+      .catch(e => {
+        console.log('get Resume error');
+
+        console.log(e);
+      });
+    return response;
+  }
 }
 
 const apiService = new ApiService();

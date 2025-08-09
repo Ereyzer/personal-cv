@@ -1,4 +1,5 @@
 import { addLinks } from '../components/addLinks';
+import { getResume } from '../components/getResume';
 import { getHardSkills } from '../components/hardSkills';
 import { getSoftSkills } from '../components/softSkills';
 import apiService from '../services/api-service';
@@ -13,4 +14,5 @@ import { aboutRef, avatarRef, introRef, language } from './references';
   addLinks(data);
   getSoftSkills(language);
   getHardSkills();
+  getResume();
 })();
