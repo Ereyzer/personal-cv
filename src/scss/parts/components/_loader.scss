@@ -1,0 +1,58 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  display: inline-flex;
+  gap: 10px;
+  transition: background-color 700ms linear 0ms, transform 700ms linear 400ms, width 700ms linear 400ms, height 700ms linear 400ms, visibility 700ms linear 400ms;
+}
+
+.loader::before,
+.loader::after {
+  content: '';
+  position: relative;
+  top: 40%;
+  left: 40%;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #000 95%, #0000) 50%/8px 8px
+    no-repeat #fff;
+  aspect-ratio: 1;
+  animation: l10 1.5s infinite alternate;
+}
+
+.loader::after {
+  --s: -1;
+}
+
+@keyframes l10 {
+  0%,
+  20% {
+    transform: scaleX(var(--s, 1)) rotate(0deg);
+    clip-path: inset(0);
+  }
+
+  60%,
+  100% {
+    transform: scaleX(var(--s, 1)) rotate(30deg);
+    clip-path: inset(40% 0 0);
+  }
+}
+
+.loader.open {
+  display: inline-flex;
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: rgb(37 47 104);
+  width: 100vw;
+  height: 100vh;
+}
+
+.loader.close {
+  pointer-events: none;
+  transform: translate(100%, -100%);
+  background-color: rgb(139 148 201 / 15.8%);
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}

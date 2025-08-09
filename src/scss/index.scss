@@ -1,6 +1,6 @@
-@use "base";
-@use "vars" as *;
-@use "parts";
+@use 'base';
+@use 'vars' as *;
+@use 'parts';
 
 html {
   scroll-behavior: smooth;
@@ -11,6 +11,6 @@ body {
   letter-spacing: 0;
 }
 
-body[data-theme="dark"] {
+body[data-theme='dark'] {
   background-color: $main-black-theme-bg-color;
 }
