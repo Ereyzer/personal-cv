@@ -10,7 +10,8 @@ menu.addLisener('click');
 const contact = new Changer({
   button: 'modal-contact-button',
   changeNode: 'modal-contact-overlay',
-  classForChange: 'is-open'
+  classForChange: 'is-open',
+  bodyClass: 'modal-open-body'
 });
 contact.closeOnOverlay = function () {
   this.changeNode[0].addEventListener('click', e => {

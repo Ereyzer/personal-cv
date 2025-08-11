@@ -2,17 +2,23 @@ export class Changer {
   #button;
   #changeNode;
   #classForChange;
+  #body;
+  #bodyClass;
 
   #addClass = () => {
     for (const element of this.#changeNode) {
       element.classList.toggle(this.#classForChange);
+      if (!this.#bodyClass) return;
+      this.#body.classList.toggle(this.#bodyClass);
     }
   };
 
-  constructor ({ button, changeNode, classForChange }) {
+  constructor ({ button, changeNode, classForChange, bodyClass = null }) {
     this.#button = document.querySelectorAll(`[${button}]`);
     this.#changeNode = document.querySelectorAll(`[${changeNode}]`);
     this.#classForChange = classForChange;
+    this.#body = document.querySelector('body');
+    this.#bodyClass = bodyClass;
   }
 
   addLisener (event) {
