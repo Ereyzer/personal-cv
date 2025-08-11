@@ -2,7 +2,12 @@
 .loader {
   display: inline-flex;
   gap: 10px;
-  transition: background-color 700ms linear 0ms, transform 700ms linear 400ms, width 700ms linear 400ms, height 700ms linear 400ms, visibility 700ms linear 400ms;
+  transition:
+    background-color 700ms linear 0ms,
+    transform 700ms linear 400ms,
+    width 700ms linear 400ms,
+    height 700ms linear 400ms,
+    visibility 700ms linear 400ms;
 }
 
 .loader::before,
