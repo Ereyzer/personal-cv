@@ -9,7 +9,7 @@ const langPrefer = new WebStorage({
 const linkAttribute = 'lang-switch-tablet';
 const langSwither = window.matchMedia('(min-width: 768px)').matches
   ? document.querySelector(`[${linkAttribute}]`)
-  : null;
+  : document.querySelectorAll(`[${linkAttribute}]`)[1];
 
 (() => {
   if (!langPrefer.propertyValue) {
