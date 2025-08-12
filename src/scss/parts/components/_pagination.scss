@@ -1,0 +1,126 @@
+@use '../../vars/index.scss' as *;
+
+.pagination-container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 20px;
+
+  $main-color: rgb(69 40 133);
+
+  //   $black-theme-color: $second-title-black-theme-text-color;
+  //   $main-color: $main-title-light-theme-text-color;
+
+  &.displaynone {
+    display: none;
+  }
+
+  .pagination-box {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .arrow-buttons {
+    width: 55px;
+    height: 30px;
+
+    // background-color: ;
+    color: $main-color;
+    border-color: $main-color;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    @media screen and (min-width: $tablet-min-width) {
+      width: 70px;
+      height: 40px;
+    }
+
+    @media screen and (min-width: $desctop-min-width) {
+      width: 90px;
+      height: 50px;
+    }
+  }
+
+  .left-arrow {
+    border-radius: 45% 0% 0 45%;
+  }
+
+  .right-arrow {
+    border-radius: 0 45% 45% 0%;
+  }
+
+  .pagination-list {
+    &-item {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+
+      @media screen and (min-width: $tablet-min-width) {
+        width: 40px;
+        height: 40px;
+      }
+
+      @media screen and (min-width: $desctop-min-width) {
+        width: 50px;
+        height: 50px;
+      }
+
+      button {
+        width: 100%;
+        height: 100%;
+        color: $main-color;
+        border-color: $main-color;
+        border-width: 1px;
+        border-style: solid;
+        background-color: transparent;
+        cursor: pointer;
+
+        &.pagination-activ-button {
+          border-width: 3px;
+          border-color: rgb(34 139 8);
+          color: rgb(245 0 0);
+          background: transparent;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+          opacity: 0.6;
+        }
+      }
+    }
+
+    &-item + &-item {
+      margin-left: 5px;
+    }
+  }
+}
+
+body[data-theme='dark'] .pagination-container {
+  $main-color: rgb(114 105 199);
+
+  .arrow-buttons {
+    color: $main-color;
+    border-color: $main-color;
+  }
+
+  .pagination-list button {
+    color: $main-color;
+    border-color: $main-color;
+    background-color: transparent;
+
+    &.pagination-activ-button {
+      border-color: aqua;
+      color: aqua;
+      background: #1f272c;
+    }
+  }
+}

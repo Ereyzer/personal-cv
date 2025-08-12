@@ -17,3 +17,6 @@ export const hardSkillsListRef = document.getElementById('hard-skills-list');
 export const softSkillsListRef = document.getElementById('soft-skills-list');
 
 export const loaderRef = document.getElementById('loader');
+export const hardSkillsPaginationRef = document.getElementById(
+  'hard-skills-pagination'
+);

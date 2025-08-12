@@ -1,10 +1,58 @@
-import { hardSkillsListRef } from '../config/references';
+import {
+  hardSkillsListRef,
+  hardSkillsPaginationRef
+} from '../config/references';
 import apiService from '../services/api-service';
+import { SessionStorage } from '../services/session-storage';
+import { HandlePaginationClass } from './pagination';
+
+const sessionStorage = new SessionStorage({ propertyName: 'hardSkills' });
+const hardSkillsPaginationListRef = hardSkillsPaginationRef.querySelector('ul');
 
 export async function getHardSkills () {
-  const skills = await apiService.getHardSkills();
+  let perPage;
+  let page;
+  let data = [];
+  let totalPages = 1;
+  let hasNextPage = false;
+  let hasPrevPage = false;
 
-  const list = skills.map(({ _id, title, image }) => {
+  if (!sessionStorage.propertyValue) {
+    perPage = 6;
+    page = 1;
+    sessionStorage.propertyValue = { perPage, page };
+    sessionStorage.setItem();
+  } else {
+    perPage = sessionStorage.propertyValue.perPage;
+    page = sessionStorage.propertyValue.page;
+  }
+
+  ({ data, page, perPage, totalPages, hasNextPage, hasPrevPage } =
+    await apiService.getHardSkills(perPage, page));
+
+  if (data.length < 1) return;
+
+  hardSkillsListRef.append(...createHardSkillsList(data));
+
+  if (totalPages < 2) return;
+  const pagination = new HandlePaginationClass({
+    hasPrevPage,
+    hasNextPage,
+    totalPages,
+    page,
+    perPage,
+    paginationRef: hardSkillsPaginationRef,
+    paginationListRef: hardSkillsPaginationListRef,
+    sessionStorage,
+    apiGetItems: apiService.getHardSkills,
+    ItemsListRef: hardSkillsListRef,
+    createItemsList: createHardSkillsList
+  });
+  pagination.handlePagination();
+}
+
+function createHardSkillsList (data) {
+  const list = data.map(({ _id, title, image }) => {
     const li = document.createElement('li');
     li.setAttribute('class', 'offer-item');
     li.setAttribute('hard-skill-id', _id);
@@ -16,6 +64,5 @@ export async function getHardSkills () {
 </div>`;
     return li;
   });
-
-  hardSkillsListRef.append(...list);
+  return list;
 }
