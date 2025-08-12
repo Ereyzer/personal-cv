@@ -20,3 +20,7 @@ export const loaderRef = document.getElementById('loader');
 export const hardSkillsPaginationRef = document.getElementById(
   'hard-skills-pagination'
 );
+
+export const softSkillsPaginationRef = document.getElementById(
+  'soft-skills-pagination'
+);

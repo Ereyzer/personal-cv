@@ -7,7 +7,6 @@ import { SessionStorage } from '../services/session-storage';
 import { HandlePaginationClass } from './pagination';
 
 const sessionStorage = new SessionStorage({ propertyName: 'hardSkills' });
-const hardSkillsPaginationListRef = hardSkillsPaginationRef.querySelector('ul');
 
 export async function getHardSkills () {
   let perPage;
@@ -27,7 +26,7 @@ export async function getHardSkills () {
     page = sessionStorage.propertyValue.page;
   }
 
-  ({ data, page, perPage, totalPages, hasNextPage, hasPrevPage } =
+  ({ data, totalPages, hasNextPage, hasPrevPage } =
     await apiService.getHardSkills(perPage, page));
 
   if (data.length < 1) return;
@@ -42,7 +41,6 @@ export async function getHardSkills () {
     page,
     perPage,
     paginationRef: hardSkillsPaginationRef,
-    paginationListRef: hardSkillsPaginationListRef,
     sessionStorage,
     apiGetItems: apiService.getHardSkills,
     ItemsListRef: hardSkillsListRef,

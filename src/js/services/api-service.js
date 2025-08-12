@@ -50,7 +50,9 @@ class ApiService {
         }
         return response.json();
       })
-      .then(data => data.data);
+      .then(data => {
+        return data;
+      });
     return response;
   }
 

@@ -22,7 +22,6 @@ export class HandlePaginationClass {
     totalPages,
     page,
     paginationRef,
-    paginationListRef,
     sessionStorage,
     ItemsListRef,
     apiGetItems,
@@ -32,15 +31,15 @@ export class HandlePaginationClass {
     this.#hasPrevPage = hasPrevPage;
     this.#hasNextPage = hasNextPage;
     this.#totalPages = totalPages;
-    this.#page = page;
     this.#paginationRef = paginationRef;
-    this.#paginationListRef = paginationListRef;
     this.#ItemsListRef = ItemsListRef;
     this.sessionStorage = sessionStorage;
-    this.#perPage = perPage;
     this.#apiGetItems = apiGetItems;
     this.#createItemsList = createItemsList;
+    this.#perPage = perPage;
+    this.#page = page;
 
+    this.#paginationListRef = paginationRef.querySelector('ul');
     this.#btnPrev = this.#paginationRef.querySelector('button[prev-btn]');
     this.#btnNext = this.#paginationRef.querySelector('button[next-btn]');
 
