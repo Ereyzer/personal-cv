@@ -1,6 +1,6 @@
 <div class="modal-overlay" modal-contact-overlay>
   <div class="modal">
-    <form class="contact-form" action="" onsubmit="return false;">
+    <form class="contact-form" action="" id="contact-modal-form">
       <h2 class="modal-contact-title">Get In Touch</h2>
       <h3 class="modal-contact-subtitle">Lets work together</h3>
       <label for="name" class="contact-label">Name</label>
@@ -11,6 +11,7 @@
         id="name"
         placeholder="Full Name"
         autofocus
+        required
       />
       <label for="email" class="contact-label">Email</label>
       <input
@@ -27,6 +28,7 @@
         type="text"
         name="message"
         id="message"
+        required
       ></textarea>
       <button class="contact-button" type="submit">Get in Touch</button>
     </form>
