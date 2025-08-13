@@ -2,9 +2,11 @@ import { addLinks } from '../components/addLinks';
 import { getResume } from '../components/getResume';
 import { getHardSkills } from '../components/hardSkills';
 import { loadLoader } from '../components/peload';
+import { createSender } from '../components/sendContactMesage';
 import { getSoftSkills } from '../components/softSkills';
 import apiService from '../services/api-service';
 import { aboutRef, avatarRef, introRef, language } from './references';
+
 (async () => {
   const data = await apiService.getInfo();
 
@@ -16,4 +18,5 @@ import { aboutRef, avatarRef, introRef, language } from './references';
   getHardSkills();
   getResume();
   loadLoader();
+  createSender();
 })();

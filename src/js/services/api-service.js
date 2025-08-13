@@ -8,6 +8,7 @@ class ApiService {
     this.getInfo = this.#errorHAndler(this.getInfo);
     this.getSoftSkills = this.#errorHAndler(this.getSoftSkills);
     this.getHardSkills = this.#errorHAndler(this.getHardSkills);
+    this.sendEmail = this.#errorHAndler(this.sendEmail);
   }
 
   #errorHAndler (func) {
@@ -98,6 +99,19 @@ class ApiService {
         console.log(e);
       });
     return response;
+  }
+
+  async sendEmail (data) {
+    const url = this.#BASE_API_URL + '/contactme/byemail';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      mode: 'cors',
+      body: JSON.stringify(data)
+    });
   }
 }
 
