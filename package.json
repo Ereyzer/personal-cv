@@ -4,6 +4,7 @@
   "source": "src/index.html",
   "description": "My personal CV project",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "homepage": "https://ivanlavercv.netlify.app/",
   "scripts": {
     "prepare": "husky install",
     "clear": "rm -rf .parcel-cache",
@@ -15,7 +16,7 @@
     "clear:dist": "npm run clear; rm -rf ./dist/*",
     "predeploy": "npm run clear:dist; npm run build",
     "deploy": "gh-pages -d dist",
-    "deployment": "./scripts/deploy.sh",
+    "deployment:git": "./scripts/deploy.sh",
     "lintstandard": "semistandard --fix | snazzy"
   },
   "husky": {
