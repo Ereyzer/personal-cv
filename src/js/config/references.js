@@ -7,11 +7,7 @@ export const aboutRef = document.getElementById('about-text');
 export const resumeDownloadRef = document.getElementById('resume-download');
 
 export const socialLinkListRef = document.getElementById('social-link-list');
-// export const linkedinRef = document.getElementById('social-link-linkedin');
-// export const githubRef = document.getElementById('social-link-github');
-// export const instagramRef = document.getElementById('social-link-instagram');
-// export const facebookRef = document.getElementById('social-link-facebook');
-// export const telegramRef = document.getElementById('social-link-telegram');
+
 export const hardSkillsListRef = document.getElementById('hard-skills-list');
 
 export const softSkillsListRef = document.getElementById('soft-skills-list');
@@ -24,3 +20,5 @@ export const hardSkillsPaginationRef = document.getElementById(
 export const softSkillsPaginationRef = document.getElementById(
   'soft-skills-pagination'
 );
+
+export const portfolioSectionRef = document.getElementById('portfolio');
