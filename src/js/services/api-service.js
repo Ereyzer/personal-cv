@@ -9,6 +9,8 @@ class ApiService {
     this.getSoftSkills = this.#errorHAndler(this.getSoftSkills);
     this.getHardSkills = this.#errorHAndler(this.getHardSkills);
     this.sendEmail = this.#errorHAndler(this.sendEmail);
+    this.getHardSkillsByIdList = this.#errorHAndler(this.getHardSkillsByIdList);
+    this.getProjects = this.#errorHAndler(this.getProjects);
   }
 
   #errorHAndler (func) {
@@ -112,6 +114,42 @@ class ApiService {
       mode: 'cors',
       body: JSON.stringify(data)
     });
+  }
+
+  async getHardSkillsByIdList (idArr) {
+    const url =
+      this.#BASE_API_URL +
+      `/admin/hardSkills/ids?idArr=${JSON.stringify(idArr)}`;
+
+    const response = await fetch(url, { mode: 'cors' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      });
+    return response;
+  }
+
+  async getProjects (lang, perPage, page) {
+    const url =
+      this.#BASE_API_URL +
+      `/admin/projects?perPage=${perPage}&page=${page}$language=${lang.toUpperCase()}`;
+
+    const response = await fetch(url, { mode: 'cors' })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      });
+    return response;
   }
 }
 
