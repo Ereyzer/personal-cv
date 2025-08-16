@@ -12,5 +12,7 @@ else
 ./scripts/merge.sh
  
     git pull origin $DEV
-    npm run deploy
+    npm run clear:dist
+    parcel build src/index.html --public-url /personal-cv/
+    gh-pages -d dist
 fi
