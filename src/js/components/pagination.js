@@ -128,7 +128,9 @@ export class HandlePaginationClass {
       this.#hasNextPage = skills.hasNextPage;
       this.#hasPrevPage = skills.hasPrevPage;
 
-      this.#ItemsListRef.replaceChildren(...this.#createItemsList(data));
+      this.#ItemsListRef.replaceChildren(
+        ...(await this.#createItemsList(data))
+      );
 
       this.#btnNext.removeEventListener('click', this.nextListener);
       this.#btnPrev.removeEventListener('click', this.prevListener);
@@ -151,7 +153,7 @@ export class HandlePaginationClass {
     this.#hasNextPage = skills.hasNextPage;
     this.#hasPrevPage = skills.hasPrevPage;
 
-    this.#ItemsListRef.replaceChildren(...this.#createItemsList(data));
+    this.#ItemsListRef.replaceChildren(...(await this.#createItemsList(data)));
 
     this.#btnPrev.removeEventListener('click', this.prevListener);
     this.#paginationListRef.removeEventListener('click', this.itemListener);
@@ -173,7 +175,7 @@ export class HandlePaginationClass {
     this.#hasNextPage = skills.hasNextPage;
     this.#hasPrevPage = skills.hasPrevPage;
 
-    this.#ItemsListRef.replaceChildren(...this.#createItemsList(data));
+    this.#ItemsListRef.replaceChildren(...(await this.#createItemsList(data)));
 
     this.#paginationListRef.removeEventListener('click', this.itemListener);
     this.#btnNext.removeEventListener('click', this.nextListener);

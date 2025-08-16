@@ -17,7 +17,7 @@ export async function getHardSkills () {
   let hasPrevPage = false;
 
   if (!sessionStorage.propertyValue) {
-    perPage = 6;
+    perPage = window.matchMedia('(min-width: 768px)').matches ? 9 : 6;
     page = 1;
     sessionStorage.propertyValue = { perPage, page };
     sessionStorage.setItem();
