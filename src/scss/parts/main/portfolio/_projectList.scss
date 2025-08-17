@@ -17,6 +17,9 @@
     color: $main-light-theme-text-color;
     text-align: center;
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .img-block {
@@ -63,6 +66,7 @@
 .project-links {
   a {
     display: inline-block;
+    text-decoration: underline;
   }
 
   a + a {

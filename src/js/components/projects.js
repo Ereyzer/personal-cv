@@ -61,12 +61,14 @@ async function createPortfolioList (data) {
       li.setAttribute('class', 'portfolio-list-item');
       li.setAttribute('project-id', _id);
       li.innerHTML = `
-      <div class="img-block">
+     <div> 
+     <div class="img-block">
         <img src="${image.url || defImgUrl}" alt="${image.name} icon" />
       </div>
       <h3>${title || 'project name'}</h3>
       <p>${description || 'description fo project'}</p>
       <p>${skillTitles.join(', ')}</p>
+      </div>
       <div class="project-links">
         <a href="${link}" target="_blank">link to project</a>
         <a href="${github}" target="_blank">link to github</a>
