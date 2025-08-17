@@ -57,10 +57,12 @@ function createSoftSkillsList (data) {
     li.setAttribute('class', 'offer-item');
     li.setAttribute('offer-id', _id);
     li.innerHTML = `<div class="skill-card">
+    <div class="skill-card-title-icon-container">
     <div class="skill-icon">
-    <img src="${image}" alt="defoult skill logo" />;
+    <img src="${image}" alt="defoult skill logo" />
     </div>
     <h4 class="skill-title">${title}</h4>
+    </div>
     <p class="skill-text">
       ${text}
     </p>

@@ -1,7 +1,7 @@
-@use "../../../../vars" as *;
+@use '../../../../vars' as *;
 
 .hard-skill-card {
-  width: 240px;
+  width: 140px;
 
   @include inter-font(600);
 
@@ -14,9 +14,9 @@
   }
 
   img {
-    margin-bottom: 30px;
-    max-width: 100px;
-    max-height: 100px;
+    margin-bottom: 10px;
+    max-width: 60px;
+    max-height: 60px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -27,8 +27,18 @@
     padding-left: 30px;
     padding-right: 30px;
   }
+
+  @media screen and (min-width: $tablet-min-width) {
+    width: 240px;
+
+    .img {
+      margin-bottom: 30px;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
 }
 
-body[data-theme="dark"] .hard-skill-card {
+body[data-theme='dark'] .hard-skill-card {
   color: $main-black-theme-text-color;
 }

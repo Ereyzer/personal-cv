@@ -1,6 +1,6 @@
-@use "colors" as *;
-@use "widths" as *;
-@use "fonts" as *;
+@use 'colors' as *;
+@use 'widths' as *;
+@use 'fonts' as *;
 %subtitle {
   color: transparent;
   background-clip: text;
@@ -35,8 +35,8 @@
 
 %section-button {
   display: block;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border: 1px solid $main-light-theme-text-color;
   border-radius: 75px;
   text-transform: capitalize;
@@ -49,8 +49,6 @@
   font-size: 13px;
 
   @media screen and (min-width: $tablet-min-width) {
-    padding-top: 20px;
-    padding-bottom: 20px;
     font-size: 15px;
   }
 
