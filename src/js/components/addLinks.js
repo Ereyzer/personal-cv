@@ -19,9 +19,9 @@ export const addLinks = data => {
     const githubRef = listClone.querySelector('#social-link-github');
     githubRef.setAttribute('href', data.github);
   }
-  if (data.telegram) {
+  if (data.phone) {
     const telegramRef = listClone.querySelector('#social-link-telegram');
-    telegramRef.setAttribute('href', data.phone);
+    telegramRef.setAttribute('href', `https://t.me/${data.phone}`);
   }
   socialLinkListRef.replaceChildren(...listClone.children);
 };
