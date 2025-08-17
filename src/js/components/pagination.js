@@ -131,6 +131,7 @@ export class HandlePaginationClass {
       this.#ItemsListRef.replaceChildren(
         ...(await this.#createItemsList(data))
       );
+      this.#ItemsListRef.scrollIntoView({ behavior: 'smooth' });
 
       this.#btnNext.removeEventListener('click', this.nextListener);
       this.#btnPrev.removeEventListener('click', this.prevListener);
