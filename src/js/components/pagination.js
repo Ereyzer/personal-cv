@@ -131,6 +131,8 @@ export class HandlePaginationClass {
       this.#ItemsListRef.replaceChildren(
         ...(await this.#createItemsList(data))
       );
+      // TODO: still need somesimg better
+      this.#ItemsListRef.parentNode.scrollIntoView({ behavior: 'smooth' });
 
       this.#btnNext.removeEventListener('click', this.nextListener);
       this.#btnPrev.removeEventListener('click', this.prevListener);
@@ -154,6 +156,8 @@ export class HandlePaginationClass {
     this.#hasPrevPage = skills.hasPrevPage;
 
     this.#ItemsListRef.replaceChildren(...(await this.#createItemsList(data)));
+    // TODO: still need somesimg better
+    this.#ItemsListRef.parentNode.scrollIntoView({ behavior: 'smooth' });
 
     this.#btnPrev.removeEventListener('click', this.prevListener);
     this.#paginationListRef.removeEventListener('click', this.itemListener);
@@ -176,6 +180,8 @@ export class HandlePaginationClass {
     this.#hasPrevPage = skills.hasPrevPage;
 
     this.#ItemsListRef.replaceChildren(...(await this.#createItemsList(data)));
+    // TODO: still need somesimg better
+    this.#ItemsListRef.parentNode.scrollIntoView({ behavior: 'smooth' });
 
     this.#paginationListRef.removeEventListener('click', this.itemListener);
     this.#btnNext.removeEventListener('click', this.nextListener);
