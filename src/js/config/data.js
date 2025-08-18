@@ -21,4 +21,5 @@ import { aboutRef, avatarRef, introRef, language } from './references';
   loadLoader();
   createSender();
   getProjects();
+  apiService.sendStat(apiService.statEnum.opened, language);
 })();

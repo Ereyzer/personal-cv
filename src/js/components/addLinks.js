@@ -1,5 +1,14 @@
-import { socialLinkListRef } from '../config/references';
+import { language, socialLinkListRef } from '../config/references';
+import apiService from '../services/api-service';
 
+const openLinkListener = e => {
+  apiService.sendStat(
+    apiService.statEnum[
+      `open${e.currentTarget.getAttribute('id').split('-')[2]}`
+    ],
+    language
+  );
+};
 export const addLinks = data => {
   const listClone = socialLinkListRef.cloneNode(true);
 
@@ -24,4 +33,7 @@ export const addLinks = data => {
     telegramRef.setAttribute('href', `https://t.me/${data.phone}`);
   }
   socialLinkListRef.replaceChildren(...listClone.children);
+  socialLinkListRef.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', openLinkListener);
+  });
 };

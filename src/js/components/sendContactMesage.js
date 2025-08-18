@@ -1,3 +1,4 @@
+import { language } from '../config/references';
 import apiService from '../services/api-service';
 
 export const createSender = async () => {
@@ -16,6 +17,7 @@ export const createSender = async () => {
       text: message.value
     });
     closeBtn.click();
+    apiService.sendStat(apiService.statEnum.sendemail, language);
   });
 };
 
