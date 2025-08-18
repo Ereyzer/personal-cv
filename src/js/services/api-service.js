@@ -2,6 +2,16 @@ import { BASE_API_URL } from '../config/constants';
 
 class ApiService {
   #BASE_API_URL;
+  #statEnum = {
+    opened: 'opened',
+    downloadresume: 'downloadresume',
+    sendemail: 'sendemail',
+    openlinkedin: 'openlinkedin',
+    openfacebook: 'openfacebook',
+    openinstagram: 'openinstagram',
+    opentelegram: 'opentelegram',
+    opengithub: 'opengithub'
+  };
 
   constructor () {
     this.#BASE_API_URL = BASE_API_URL;
@@ -22,6 +32,10 @@ class ApiService {
         return null;
       }
     };
+  }
+
+  get statEnum () {
+    return this.#statEnum;
   }
 
   async getInfo () {
@@ -137,7 +151,7 @@ class ApiService {
   async getProjects (lang, perPage, page) {
     const url =
       this.#BASE_API_URL +
-      `/admin/projects?perPage=${perPage}&page=${page}$language=${lang.toUpperCase()}`;
+      `/admin/projects?perPage=${perPage}&page=${page}&language=${lang.toUpperCase()}`;
 
     const response = await fetch(url, { mode: 'cors' })
       .then(response => {
@@ -150,6 +164,14 @@ class ApiService {
         return data;
       });
     return response;
+  }
+
+  async sendStat (act, language) {
+    const url =
+      this.#BASE_API_URL + `/admin/statistics?act=${act}&language=${language}`;
+    try {
+      fetch(url, { mode: 'cors', method: 'put' });
+    } catch {}
   }
 }
 
