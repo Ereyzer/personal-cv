@@ -1,6 +1,6 @@
 {
   "name": "personal-cv",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "source": "src/index.html",
   "description": "My personal CV project",
   "browserslist": "> 0.5%, last 2 versions, not dead",
