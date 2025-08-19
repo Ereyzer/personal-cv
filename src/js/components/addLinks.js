@@ -1,4 +1,4 @@
-import { language, socialLinkListRef } from '../config/references';
+import { language, socialLinkListsRef } from '../config/references';
 import apiService from '../services/api-service';
 
 const openLinkListener = e => {
@@ -9,9 +9,8 @@ const openLinkListener = e => {
     language
   );
 };
-export const addLinks = data => {
-  const listClone = socialLinkListRef.cloneNode(true);
 
+const updateLinks = (listClone, data) => {
   if (data.linkedin) {
     const linkedinRef = listClone.querySelector('#social-link-linkedin');
     linkedinRef.setAttribute('href', data.linkedin);
@@ -32,8 +31,17 @@ export const addLinks = data => {
     const telegramRef = listClone.querySelector('#social-link-telegram');
     telegramRef.setAttribute('href', `https://t.me/${data.phone}`);
   }
-  socialLinkListRef.replaceChildren(...listClone.children);
-  socialLinkListRef.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', openLinkListener);
-  });
+  return listClone;
+};
+
+export const addLinks = data => {
+  for (let i = 0; i < socialLinkListsRef.length; i++) {
+    const element = socialLinkListsRef[i];
+    element.replaceChildren(
+      ...updateLinks(element.cloneNode(true), data).children
+    );
+    element.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', openLinkListener);
+    });
+  }
 };
