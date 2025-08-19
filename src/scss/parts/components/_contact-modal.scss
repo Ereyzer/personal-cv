@@ -32,6 +32,9 @@
   border-radius: 25px;
 
   // overflow: scroll;
+  .social-list {
+    margin-bottom: 10px;
+  }
 
   @media screen and (min-width: $tablet-min-width) {
     max-width: $tablet-min-width;
@@ -63,6 +66,8 @@ body[data-theme='dark'] .modal-contact-title {
 
 .modal-contact-subtitle {
   @extend %section-subtitle;
+
+  margin-bottom: 20px;
 }
 
 body[data-theme='dark'] .modal-contact-subtitle {
