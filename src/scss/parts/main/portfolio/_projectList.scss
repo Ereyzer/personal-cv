@@ -78,6 +78,7 @@ body[data-theme='dark'] {
   .portfolio-list {
     &-item {
       border-color: black;
+      color: $main-black-theme-text-color;
     }
   }
 }
