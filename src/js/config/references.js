@@ -6,7 +6,9 @@ export const introRef = document.getElementById('home-intro-text');
 export const aboutRef = document.getElementById('about-text');
 export const resumeDownloadRef = document.getElementById('resume-download');
 
-export const socialLinkListRef = document.getElementById('social-link-list');
+export const socialLinkListsRef = document.querySelectorAll(
+  '[social-list-id="social-link-list"]'
+);
 
 export const hardSkillsListRef = document.getElementById('hard-skills-list');
 
