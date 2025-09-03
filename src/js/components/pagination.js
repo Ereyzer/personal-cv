@@ -78,7 +78,11 @@ export class HandlePaginationClass {
     if (this.#page === 2) {
       counter = -1;
     } else if (this.#page > 2) {
-      counter = -2;
+      if (this.#page === 4 && this.#totalPages < 5) {
+        counter = -3;
+      } else {
+        counter = -2;
+      }
     }
 
     if (pageListCount === 5) {
@@ -91,6 +95,9 @@ export class HandlePaginationClass {
 
     for (let i = 0; i < pageListCount; i++) {
       const pageNum = this.#page + counter + i;
+      if (pageNum > this.#totalPages) {
+        continue;
+      }
 
       const li = document.createElement('li');
       li.classList.add('pagination-list-item');
