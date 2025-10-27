@@ -79,5 +79,11 @@
   "dependencies": {
     "modern-normalize": "^3.0.1",
     "snazzy": "^9.0.0"
+  },
+  "targets": {
+    "default": {
+      "context": "browser",
+      "optimize": false
+    }
   }
 }
